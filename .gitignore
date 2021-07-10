@@ -1,0 +1,11 @@
+.env
+*.sqlite3
+.idea
+*.pyc
+\media
+*.exe
+\installers
+\staticfiles
+\toDo
+docker-compose-prod.yml
+__pycache__/

@@ -3,7 +3,8 @@ version: '3.8'
 services:
   web:
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    command: python /code/manage.py runserver_plus --cert-file cert.crt 0.0.0.0:8000
+#    command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:

@@ -9,3 +9,5 @@
 \toDo
 docker-compose-prod.yml
 __pycache__/
+*.crt
+*.key

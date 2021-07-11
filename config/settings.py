@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     # 3thd
     'django_extensions',
     # 'debug_toolbar',
+
+    # local
+    'apps.accounts',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +143,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 # INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+
+AUTH_USER_MODEL = 'apps.accounts.CustomUser'

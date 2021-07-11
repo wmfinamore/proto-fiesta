@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     # local
     'accounts',
+    'apps.core',
 ]
 
 MIDDLEWARE = [

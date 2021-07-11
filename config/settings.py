@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # será necessário realizar um novo build da imagem (--build)
+    'cpf_field',
 
     # 3thd
     'django_extensions',
     'debug_toolbar',
-    'cpf_field',
 
     # local
     'accounts',

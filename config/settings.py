@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # 3thd
     'django_extensions',
     'debug_toolbar',
+    'cpf_field',
 
     # local
     'accounts',

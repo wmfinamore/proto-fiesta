@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+# routes for activate debug toolbar when django debug mode is true
 if settings.DEBUG:
     import debug_toolbar
 

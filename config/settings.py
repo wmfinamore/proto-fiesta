@@ -148,8 +148,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # DEBUG TOOLBAR CONFIGURATION
-
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
+# CONFIGURATION TO USE CUSTOMER MODEL
 AUTH_USER_MODEL = 'accounts.CustomUser'

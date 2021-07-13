@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # 3thd
     'django_extensions',
     'debug_toolbar',
+    'bootstrapform',
 
     # local
     'accounts',

@@ -9,4 +9,5 @@ def home(request):
     """
     data = {}
     data['usuario'] = request.user
+    # data retorna o objeto usuario no contexto
     return render(request, 'core/index.html', data)

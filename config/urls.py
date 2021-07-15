@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('apps.core.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('cargos/', include('apps.cargos.urls')),
 ]
 
 # routes for activate debug toolbar when django debug mode is true

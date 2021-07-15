@@ -18,6 +18,9 @@
                 <a class="nav-link" href="">Órgãos</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'cargos_lista' %}">Cargos</a>
+              </li>
+              <li class="nav-item">
                   {% if usuario.username %}
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                   {% else %}

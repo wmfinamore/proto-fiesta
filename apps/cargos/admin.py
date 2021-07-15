@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cargos
+from .models import Cargo
 
 
-admin.site.register(Cargos)
+admin.site.register(Cargo)

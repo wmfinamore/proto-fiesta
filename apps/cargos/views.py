@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
                                     ListView,
                                     CreateView,
@@ -11,6 +11,8 @@ class CargosListView(ListView):
     context_object_name = 'cargos'
 
 
-class CargoCreateView(CreateView):
+class CargoCreateView(SuccessMessageMixin, CreateView):
     model = Cargo
     fields = ['classe', 'nome', 'jornada',]
+    success_url = '/success/'
+    success_message = "Cargo %(nome) foi criado com sucesso!"

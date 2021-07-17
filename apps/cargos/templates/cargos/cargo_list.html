@@ -8,5 +8,6 @@
             <li>{{ cargo.classe }}-{{ cargo.nome }}</li>
         {% endfor %}
     </lu>
-
+    <br>
+    <a href="{% url 'cargo_novo' %}" class="btn btn-primary">Novo</a>
 {% endblock %}

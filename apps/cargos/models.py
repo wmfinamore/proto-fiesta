@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 
@@ -12,3 +13,16 @@ class Cargo(models.Model):
 
     def __str__(self):
         return self.classe + ' - '+self.nome
+
+
+class Vinculo(models.Model):
+    funcionario = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    cargo = models.ForeignKey(Cargo, on_delete=models.PROTECT)
+    matricula = models.PositiveIntegerField(unique=True)
+    data_inicio = models.DateField()
+    data_fim = models.DateField(null=True, blank=True)
+    data_inclusao = models.DateTimeField(auto_now_add=True)
+    data_alteracao = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.funcionario.name + '-' + self.cargo.nome

@@ -29,3 +29,4 @@ class CargoEditView(UpdateView):
 class CargoDeleteView(DeleteView):
     model = Cargo
     success_url = reverse_lazy('cargos_lista')
+    context_object_name = 'cargo'

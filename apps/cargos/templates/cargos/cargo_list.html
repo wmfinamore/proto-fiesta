@@ -7,7 +7,8 @@
         {% for cargo in cargos %}
             <li>
                 <a href="{% url 'cargo_editar' cargo.id %}">{{ cargo.classe }}-{{ cargo.nome }}</a>
-                <a href="{% url 'cargo_delete' cargo.id %}" class="btn btn-danger">Excluir</a>
+                <a href="{% url 'cargo_excluir' cargo.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                <br>
             </li>
         {% endfor %}
     </lu>

@@ -3,15 +3,28 @@
 {% block main %}
     <h2>Lista de Cargos</h2>
     <br>
-    <lu>
-        {% for cargo in cargos %}
-            <li>
-                <a href="{% url 'cargo_editar' cargo.id %}">{{ cargo.classe }}-{{ cargo.nome }}</a>
-                <a href="{% url 'cargo_excluir' cargo.id %}" class="btn btn-danger btn-sm">Excluir</a>
-                <br>
-            </li>
-        {% endfor %}
-    </lu>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Classe</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Jornada</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cargo in cargos %}
+                <tr>
+                    <td scope="row">{{ cargo.id }}</td>
+                    <td>{{ cargo.classe }}</td>
+                    <td><a href="{% url 'cargo_editar' cargo.id %}">{{ cargo.nome }}</a></td>
+                    <td>{{ cargo.jornada }}</td>
+                    <td><a href="{% url 'cargo_excluir' cargo.id %}" class="btn btn-danger btn-sm">Excluir</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <br>
     <a href="{% url 'cargo_novo' %}" class="btn btn-primary">Novo</a>
 {% endblock %}

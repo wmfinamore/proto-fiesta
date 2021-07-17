@@ -14,5 +14,5 @@ class CargosListView(ListView):
 class CargoCreateView(SuccessMessageMixin, CreateView):
     model = Cargo
     fields = ['classe', 'nome', 'jornada',]
-    success_url = '/success/'
-    success_message = "Cargo %(nome) foi criado com sucesso!"
+    success_url = '/cargos/'
+    success_message = "Cargo foi criado com sucesso!"

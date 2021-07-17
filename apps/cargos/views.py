@@ -13,3 +13,4 @@ class CargosListView(ListView):
 
 class CargoCreateView(CreateView):
     model = Cargo
+    field = ['classe', 'nome', 'jornada',]

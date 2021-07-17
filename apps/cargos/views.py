@@ -24,6 +24,7 @@ class CargoCreateView(SuccessMessageMixin, CreateView):
 class CargoEditView(UpdateView):
     model = Cargo
     fields = ['classe', 'nome', 'jornada',]
+    context_object_name = 'cargo'
 
 
 class CargoDeleteView(DeleteView):

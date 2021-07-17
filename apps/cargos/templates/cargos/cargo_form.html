@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load bootstrap %}
 
 {% block main %}
     <h2>Novo Cargo</h2>
@@ -6,7 +7,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form|bootstrap }}
-        <input type="submit" value="Salvar">
+        <input type="submit" value="Salvar" class="btn btn-success">
     </form>
 
 {% endblock %}

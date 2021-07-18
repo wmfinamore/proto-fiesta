@@ -12,6 +12,7 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     model = CustomUser
     list_display = ['email', 'username', 'cpf',]
+    list_editable = ['cpf', ]
 
 
 admin.site.register(CustomUser, CustomUserAdmin, )

@@ -7,6 +7,8 @@ from django.views.generic import (
                                     DeleteView,
                                  )
 from .models import Cargo
+from .models import Vinculo
+from .forms import VinculoForm
 
 
 class CargosListView(ListView):
@@ -31,3 +33,8 @@ class CargoDeleteView(DeleteView):
     model = Cargo
     success_url = reverse_lazy('cargos_lista')
     context_object_name = 'cargo'
+
+
+class VinculosListView(ListView):
+    model = Vinculo
+    context_object_name = 'vinculos'

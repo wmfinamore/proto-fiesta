@@ -24,5 +24,9 @@ class Vinculo(models.Model):
     data_inclusao = models.DateTimeField(auto_now_add=True)
     data_alteracao = models.DateTimeField(auto_now=True)
 
+    @property
+    def nome_completo(self):
+        return self.funcionario.get_full_name()
+
     def __str__(self):
         return self.funcionario.get_full_name() + '-' + self.cargo.nome

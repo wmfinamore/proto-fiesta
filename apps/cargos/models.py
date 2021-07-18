@@ -25,4 +25,4 @@ class Vinculo(models.Model):
     data_alteracao = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.funcionario.name + '-' + self.cargo.nome
+        return self.funcionario.get_full_name() + '-' + self.cargo.nome

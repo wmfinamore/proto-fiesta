@@ -40,7 +40,7 @@ class VinculosListView(ListView):
     context_object_name = 'vinculos'
 
 
-class VinculosCreate(CreateView):
+class VinculoCreate(CreateView):
     model = Vinculo
     form_class = VinculoForm
     success_url = '/cargos/vinculos/'

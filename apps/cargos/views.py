@@ -38,3 +38,10 @@ class CargoDeleteView(DeleteView):
 class VinculosListView(ListView):
     model = Vinculo
     context_object_name = 'vinculos'
+
+
+class VinculosCreate(CreateView):
+    model = Vinculo
+    form_class = VinculoForm
+    success_url = '/cargos/vinculos/'
+    success_message = "Vínculo foi criado com sucesso!"

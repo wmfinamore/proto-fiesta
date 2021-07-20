@@ -40,8 +40,14 @@ class VinculosListView(ListView):
     context_object_name = 'vinculos'
 
 
-class VinculoCreate(CreateView):
+class VinculoCreateView(CreateView):
     model = Vinculo
     form_class = VinculoForm
     success_url = '/cargos/vinculos/'
     success_message = "Vínculo foi criado com sucesso!"
+
+
+class VinculoEditView(UpdateView):
+    model = Vinculo
+    form_class = VinculoForm
+    context_object_name = 'vinculo'

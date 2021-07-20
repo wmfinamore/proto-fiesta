@@ -12,4 +12,5 @@ urlpatterns = [
     path('vinculos/', views.VinculosListView.as_view(), name='vinculos_lista'),
     path('vinculos/novo/', views.VinculoCreateView.as_view(), name='vinculo_novo'),
     path('vinculos/editar/<int:pk>/', views.VinculoEditView.as_view(), name='vinculo_editar'),
+    path('vinculos/excluir/<int:pk>/', views.VinculoDeleteView.as_view(), name='vinculo_excluir'),
 ]

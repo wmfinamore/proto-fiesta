@@ -51,3 +51,9 @@ class VinculoEditView(UpdateView):
     model = Vinculo
     form_class = VinculoForm
     context_object_name = 'vinculo'
+
+
+class VinculoDeleteView(DeleteView):
+    model = Vinculo
+    success_url = reverse_lazy('vinculos_lista')
+    context_object_name = 'vinculo'

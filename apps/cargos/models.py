@@ -30,3 +30,6 @@ class Vinculo(models.Model):
 
     def __str__(self):
         return self.funcionario.get_full_name() + '-' + self.cargo.nome
+
+    def get_absolute_url(self):
+        return reverse('vinculos_lista')

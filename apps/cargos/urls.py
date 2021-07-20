@@ -10,5 +10,6 @@ urlpatterns = [
     path('excluir/<int:pk>/', views.CargoDeleteView.as_view(), name='cargo_excluir'),
     # Vinculos URL's
     path('vinculos/', views.VinculosListView.as_view(), name='vinculos_lista'),
-    path('vinculos/novo/', views.VinculoCreate.as_view(), name='vinculo_novo'),
+    path('vinculos/novo/', views.VinculoCreateView.as_view(), name='vinculo_novo'),
+    path('vinculos/editar/<int:pk>/', views.VinculoEditView.as_view(), name='vinculo_editar'),
 ]

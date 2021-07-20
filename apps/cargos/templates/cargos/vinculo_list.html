@@ -18,7 +18,7 @@
                 <tr>
                     <td scope="row">{{ vinculo.id }}</td>
                     <td>{{ vinculo.nome_completo }}</td>
-                    <td><a href="">{{ vinculo.cargo.nome }}</a></td>
+                    <td><a href="{% url 'vinculo_editar' vinculo.id %}">{{ vinculo.cargo.nome }}</a></td>
                     <td>{{ vinculo.matricula }}</td>
                     <td><a href="" class="btn btn-danger btn-sm">Excluir</a></td>
                 </tr>

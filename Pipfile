@@ -16,6 +16,7 @@ werkzeug = "==0.16.0"
 pyopenssl = "==19.0.0"
 django-cpf = "*"
 django-bootstrap-form = "*"
+django-mptt = "*"
 
 [requires]
 python_version = "3.9"

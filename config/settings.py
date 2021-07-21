@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'accounts',
     'apps.core',
     'apps.cargos',
-    'app.orgaos',
+    'apps.orgaos',
 ]
 
 MIDDLEWARE = [

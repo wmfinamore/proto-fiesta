@@ -19,7 +19,7 @@ class Orgao(MPTTModel):
     id = models.UUIDField(primary_key=True)
     nome = models.CharField(max_length=100)
     sigla = models.CharField(max_length=10, null=True, blank=True)
-    superior = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     tipo = models.CharField(max_length=2, choices=TIPO_UNIDADE, default='F')
     situacao = models.CharField(max_length=2, choices=SITUACAO_UNIDADE, default='A')
 

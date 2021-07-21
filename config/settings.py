@@ -163,3 +163,6 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # LOGIN/LOGOUT CONFIGURATION
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
+
+# MPTT CONFIGURATIONS
+MPTT_ADMIN_LEVEL_INDENT = 20 # indent pixels per level globally

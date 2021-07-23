@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from .models import Orgao
 
-# Create your views here.
+
+def OrgaosList(request):
+    return render(request, "orgaos.html", {
+        'orgaos': Orgao.objects.all()
+    })

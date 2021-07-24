@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import (
                                     TemplateView,
-                                    CreateView
+                                    CreateView,
+                                    UpdateView,
                                  )
 from .models import Orgao
 
@@ -20,3 +21,9 @@ class OrgaoCreateView(CreateView):
     fields = ['nome', 'sigla', 'parent', 'tipo', 'situacao', ]
     success_url = '/orgaos/'
     success_message = "Órgão foi criado com sucesso!"
+
+
+class OrgaoEditView(UpdateView):
+    model = Orgao
+    fields = ['nome', 'sigla', 'parent', 'tipo', 'situacao', ]
+    context_object_name = 'orgao'

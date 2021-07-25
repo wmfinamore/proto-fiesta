@@ -10,6 +10,7 @@
                 <th scope="col">Funcionário</th>
                 <th scope="col">Cargo</th>
                 <th scope="col">Matrícula</th>
+                <th scope="col">Lotação</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                     <td>{{ vinculo.nome_completo }}</td>
                     <td><a href="{% url 'vinculo_editar' vinculo.id %}">{{ vinculo.cargo.nome }}</a></td>
                     <td>{{ vinculo.matricula }}</td>
+                    <td>{{ vinculo.lotacao }}</td>
                     <td><a href="{% url 'vinculo_excluir' vinculo.id %}" class="btn btn-danger btn-sm">Excluir</a></td>
                 </tr>
             {% endfor %}

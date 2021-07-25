@@ -13,5 +13,9 @@
         {{ form|bootstrap }}
         <input type="submit" value="Salvar" class="btn btn-success">
     </form>
+    <br>
+    {% if orgao %}
+        <a href="{% url 'orgao_excluir' orgao.id %}" class="btn btn-danger">Excluir</a>
+    {% endif %}
 
 {% endblock %}

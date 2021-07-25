@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.OrgaosListView.as_view(), name='orgaos_lista'),
     path('novo/', views.OrgaoCreateView.as_view(), name='orgao_novo'),
     path('editar/<int:pk>/', views.OrgaoEditView.as_view(), name='orgao_editar'),
+    path('excluir/<int:pk>/', views.OrgaoDeleteView.as_view(), name='orgao_excluir'),
 
 ]

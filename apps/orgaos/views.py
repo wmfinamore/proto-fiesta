@@ -3,8 +3,10 @@ from django.views.generic import (
                                     TemplateView,
                                     CreateView,
                                     UpdateView,
+                                    DeleteView,
                                  )
 from .models import Orgao
+from django.urls import reverse_lazy
 
 
 class OrgaosListView(TemplateView):
@@ -26,4 +28,10 @@ class OrgaoCreateView(CreateView):
 class OrgaoEditView(UpdateView):
     model = Orgao
     fields = ['nome', 'sigla', 'parent', 'tipo', 'situacao', ]
+    context_object_name = 'orgao'
+
+
+class OrgaoDeleteView(DeleteView):
+    model = Orgao
+    success_url = reverse_lazy('orgaos_lista')
     context_object_name = 'orgao'

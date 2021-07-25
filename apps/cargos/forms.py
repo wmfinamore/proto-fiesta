@@ -1,8 +1,11 @@
 from django import forms
+from mptt.forms import TreeNodeChoiceField
 from .models import Vinculo
+from apps.orgaos.models import Orgao
 
 
 class VinculoForm(forms.ModelForm):
+    lotacao = TreeNodeChoiceField(queryset=Orgao.objects.all())
 
     class Meta:
         model = Vinculo

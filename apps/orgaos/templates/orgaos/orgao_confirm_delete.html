@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+    <h2>Órgão</h2>
+    <br>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <h1>Você tem certeza que quer excluir o órgão {{ orgao }}?</h1>
+        {{ form }}
+        <input type="submit" value="Confirmar" class="btn btn-danger">
+    </form>
+{% endblock %}

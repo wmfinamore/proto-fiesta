@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from apps.orgaos.models import Orgao
 
 
 class Cargo(models.Model):
@@ -16,9 +17,11 @@ class Cargo(models.Model):
 
 
 class Vinculo(models.Model):
-    funcionario = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    funcionario = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, related_name='vinculos')
     cargo = models.ForeignKey(Cargo, on_delete=models.PROTECT)
     matricula = models.PositiveIntegerField(unique=True)
+    lotacao = models.ForeignKey(
+        Orgao, on_delete=models.PROTECT, null=True, blank=True, related_name='vinculos_lotados')
     data_inicio = models.DateField()
     data_fim = models.DateField(null=True, blank=True)
     data_inclusao = models.DateTimeField(auto_now_add=True)

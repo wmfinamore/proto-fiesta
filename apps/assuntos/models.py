@@ -2,7 +2,7 @@ from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 
 
-# Situação da unidade administrativa
+# Situação do Assunto
 SITUACAO_UNIDADE = [
     ('A', 'Ativa'),
     ('I', 'Inativa')

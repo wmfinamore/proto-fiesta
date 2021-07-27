@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.cargos',
     'apps.orgaos',
+    'apps.assuntos',
 ]
 
 MIDDLEWARE = [

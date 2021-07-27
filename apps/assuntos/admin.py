@@ -3,4 +3,9 @@ from mptt.admin import MPTTModelAdmin
 from .models import Assunto
 
 
-admin.site.register(Assunto, MPTTModelAdmin)
+class AssuntoAdmin(MPTTModelAdmin):
+    model = Assunto
+    raw_id_fields = ['parent']
+
+
+admin.site.register(Assunto, AssuntoAdmin)

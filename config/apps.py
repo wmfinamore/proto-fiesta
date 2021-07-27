@@ -1,5 +1,5 @@
 from django.contrib.admin.apps import AdminConfig
 
 
-class AssuntoAdminConfig(AdminConfig):
+class ProtoAdminConfig(AdminConfig):
     default_site = 'config.admin.ProtoAdminSite'

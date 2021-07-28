@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Assunto
 
-# Create your views here.
+
+class AssuntosListView(ListView):
+    model = Assunto
+    context_object_name = 'assuntos'

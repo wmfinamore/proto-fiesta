@@ -7,7 +7,7 @@
 <ul>
     {% recursetree assuntos %}
         <li>
-            <a href="">{{ node.nome }}</a>
+            <a href="{% url 'assunto_editar' assuntos.id %}">{{ node.nome }}</a>
             {% if not node.is_leaf_node %}
                 <ul class="children">
                     {{ children }}

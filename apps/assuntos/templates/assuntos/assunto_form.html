@@ -14,7 +14,7 @@
         <input type="submit" value="Salvar" class="btn btn-success">
     </form>
     {% if assunto %}
-        <a href="" class="btn btn-danger">Excluir</a>
+        <a href="{% url 'assunto_excluir' assunto.id %}" class="btn btn-danger">Excluir</a>
     {% endif %}
 
 {% endblock %}

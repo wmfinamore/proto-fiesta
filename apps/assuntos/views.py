@@ -26,7 +26,7 @@ class AssuntoEditView(UpdateView):
     context_object_name = 'assunto'
 
 
-class AssuntoDeleView(DeleteView):
+class AssuntoDeleteView(DeleteView):
     model = Assunto
     context_object_name = 'assunto'
     success_url = reverse_lazy('assuntos_lista')

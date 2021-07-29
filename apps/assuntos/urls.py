@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.AssuntosListView.as_view(), name='assuntos_lista'),
     path('novo/', views.AssuntoCreateView.as_view(), name='assunto_novo'),
     path('editar/<int:pk>/', views.AssuntoEditView.as_view(), name='assunto_editar'),
+    path('excluir/<int:pk>/', views.AssuntoDeleteView.as_view(), name='assunto_excluir'),
 ]

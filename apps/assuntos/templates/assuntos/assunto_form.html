@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+    {% if assunto %}
+        <h2>Editar Assunto</h2>
+    {% else %}
+        <h2>Novo Assunto</h2>
+    {% endif %}
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <input type="submit" value="Salvar" class="btn btn-success">
+    </form>
+    {% if assunto %}
+        <a href="" class="btn btn-danger">Excluir</a>
+    {% endif %}
+
+{% endblock %}

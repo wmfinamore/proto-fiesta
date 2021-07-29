@@ -2,8 +2,10 @@ from django.views.generic import (
                                     ListView,
                                     CreateView,
                                     UpdateView,
+                                    DeleteView,
                                  )
 from .models import Assunto
+from django.urls import reverse_lazy
 
 
 class AssuntosListView(ListView):
@@ -23,3 +25,8 @@ class AssuntoEditView(UpdateView):
     fields = ['nome', 'parent', 'situacao']
     context_object_name = 'assunto'
 
+
+class AssuntoDeleView(DeleteView):
+    model = Assunto
+    context_object_name = 'assunto'
+    success_url = reverse_lazy('assuntos_lista')

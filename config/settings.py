@@ -37,13 +37,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    # django autocomplete light - será necessário realizar um novo build da imagem (--build)
+    'dal',
+    'dal_select2',
+
+    # custom site admin
     'config.apps.ProtoAdminConfig',
+
+    # django native apps
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # será necessário realizar um novo build da imagem (--build)
     'cpf_field',
 
@@ -53,7 +60,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'mptt',
 
-    # local
+    # local apps
     'accounts',
     'apps.core',
     'apps.cargos',

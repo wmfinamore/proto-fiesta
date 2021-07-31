@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('apps.core.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('funcionarios-autocomplete/', include('accounts.urls')),
     path('cargos/', include('apps.cargos.urls')),
     path('orgaos/', include('apps.orgaos.urls')),
     path('assuntos/', include('apps.assuntos.urls')),

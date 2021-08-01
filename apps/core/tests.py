@@ -13,3 +13,8 @@ class IndexTests(SimpleTestCase):
     def test_index_url_name(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
+
+    # Teste para verificar o template retornado pela rota da homepage
+    def test_index_template(self):
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'core/index.html')

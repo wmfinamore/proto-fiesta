@@ -11,10 +11,12 @@ class AssuntoTests(TestCase):
             situacao = 'A'
         )
 
+    # Teste para criação e recuperação de instância da classe Assunto
     def test_assunto_listing(self):
         self.assertEqual(f'{self.assunto.nome}', 'Teste de assunto')
         self.assertEqual(f'{self.assunto.situacao}', 'A')
 
+    # Teste de resposta da rota para lista de assuntos
     def test_assunto_list_view(self):
         response = self.client.get(reverse('assuntos_lista'))
         self.assertEqual(response.status_code, 200)

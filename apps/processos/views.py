@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Processo
 
-# Create your views here.
+class ProcessosListView(ListView):
+    model = Processo
+    context_object_name = 'processos'

@@ -4,5 +4,5 @@ from .views import ProcessosListView, ProcessoCreateView, ProcessoUpdateView
 urlpatterns = [
     path('', ProcessosListView.as_view(), name='processos_lista'),
     path('novo/', ProcessoCreateView.as_view(), name='processo_novo'),
-    path('editar/<int:pk>', ProcessoUpdateView.as_view(), name='processo_editar'),
+    path('editar/<pk>', ProcessoUpdateView.as_view(), name='processo_editar'),
 ]

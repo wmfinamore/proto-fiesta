@@ -3,6 +3,7 @@ from apps.assuntos.models import Assunto
 from django.contrib.auth import get_user_model
 import uuid
 from datetime import date
+from django.urls import reverse
 
 # Situação do Processo
 SITUACAO_UNIDADE = [
@@ -53,6 +54,12 @@ class Processo(models.Model):
         ano = self.data_criacao.strftime("%Y")
         numero = self.num_processo
         return f'{numero:06}' + '/' + str(ano)
+
+    def get_absolute_url(self):
+        return reverse('processos_lista')
+
+    class Meta:
+        ordering = ['-data_criacao']
 
     def __str__(self):
         return self.numero_processo

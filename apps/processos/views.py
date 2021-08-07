@@ -28,6 +28,7 @@ class ProcessoUpdateView(UpdateView):
     model = Processo
     fields = ['interessado', 'assunto', 'resumo', 'situacao']
     context_object_name = 'processo'
+    # Definir a função get_absolute_url no model
 
     def form_valid(self, form):
         # recupera o formulário enviado no post, antes do commit

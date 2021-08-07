@@ -52,7 +52,6 @@ class Processo(models.Model):
     def numero_processo(self):
         ano = self.data_criacao.strftime("%Y")
         numero = self.num_processo
-        # return str(self.num_processo) + '/' + str(ano)
         return f'{numero:06}' + '/' + str(ano)
 
     def __str__(self):

@@ -1,5 +1,6 @@
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Processo
+from django.urls import reverse_lazy
 
 class ProcessosListView(ListView):
     model = Processo
@@ -39,3 +40,9 @@ class ProcessoUpdateView(UpdateView):
         processo.save()
         # retornar o fommulário válido para a superclasse
         return super(ProcessoUpdateView, self).form_valid(form)
+
+
+class ProcessoDeleteView(DeleteView):
+    model = Processo
+    success_url = reverse_lazy('processos_lista')
+    context_object_name = 'processo'

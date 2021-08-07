@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+    {% if processo %}
+        <h2>Editar Processo</h2>
+    {% else %}
+        <h2>Novo Processo</h2>
+    {% endif %}
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <input type="submit" value="Salvar" class="btn btn-success">
+    </form>
+    <br>
+    {% if processo %}
+        <a href="" class="btn btn-danger">Excluir</a>
+    {% endif %}
+
+{% endblock %}

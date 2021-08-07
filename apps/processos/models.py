@@ -48,6 +48,12 @@ class Processo(models.Model):
                 # salvamos o objeto com o método .save da superclasse
         super().save(*args, **kwargs)
 
-    def __str__(self):
+    @property
+    def numero_processo(self):
         ano = self.data_criacao.strftime("%Y")
-        return str(self.num_processo) + '/' + str(ano)
+        numero = self.num_processo
+        # return str(self.num_processo) + '/' + str(ano)
+        return f'{numero:06}' + '/' + str(ano)
+
+    def __str__(self):
+        return self.numero_processo

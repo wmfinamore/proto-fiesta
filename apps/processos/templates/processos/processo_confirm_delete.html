@@ -1,5 +1,4 @@
 {% extends '_base.html' %}
-{% load bootstrap %}
 
 {% block main %}
     <h2>Processo</h2>
@@ -7,8 +6,11 @@
     <br>
     <form method="post">
         {% csrf_token %}
-        <h1>Você tem certeza que quer excluir o Processo nº {{ processo.numero_processo }} - {{ processo.assunto }}?</h1>
-        {{ form|bootstrap }}
+        <h1>Você tem certeza que quer excluir o Processo nº {{ processo.numero_processo }}:
+            <br> {{ processo.assunto }}?
+        </h1>
+        {{ form }}
+        <br>
         <input type="submit" value="Confirmar" class="btn btn-danger">
     </form>
 {% endblock %}

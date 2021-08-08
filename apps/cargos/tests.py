@@ -3,14 +3,7 @@ from .models import Cargo, Vinculo
 from apps.orgaos.models import Orgao
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from .views import (CargosListView,
-                    CargoCreateView,
-                    CargoEditView,
-                    CargoDeleteView)
-from .views import (VinculosListView,
-                    VinculoCreateView,
-                    VinculoEditView,
-                    VinculoDeleteView)
+
 
 # Teste de criação e recuperação de instancia de Cargo
 class CargoTests(TestCase):

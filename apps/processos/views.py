@@ -1,13 +1,15 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Processo
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class ProcessosListView(ListView):
     model = Processo
     context_object_name = 'processos'
 
 
-class ProcessoCreateView(CreateView):
+class ProcessoCreateView(LoginRequiredMixin, CreateView):
     model = Processo
     fields = ['interessado', 'assunto', 'resumo', 'situacao']
     success_url = '/processos/'
@@ -25,7 +27,7 @@ class ProcessoCreateView(CreateView):
         return super(ProcessoCreateView, self).form_valid(form)
 
 
-class ProcessoUpdateView(UpdateView):
+class ProcessoUpdateView(LoginRequiredMixin, UpdateView):
     model = Processo
     fields = ['interessado', 'assunto', 'resumo', 'situacao']
     context_object_name = 'processo'
@@ -42,7 +44,7 @@ class ProcessoUpdateView(UpdateView):
         return super(ProcessoUpdateView, self).form_valid(form)
 
 
-class ProcessoDeleteView(DeleteView):
+class ProcessoDeleteView(LoginRequiredMixin, DeleteView):
     model = Processo
     success_url = reverse_lazy('processos_lista')
     context_object_name = 'processo'

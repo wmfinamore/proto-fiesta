@@ -6,6 +6,7 @@ from django.views.generic import (
                                  )
 from .models import Orgao
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class OrgaosListView(TemplateView):
@@ -17,20 +18,20 @@ class OrgaosListView(TemplateView):
         return context
 
 
-class OrgaoCreateView(CreateView):
+class OrgaoCreateView(LoginRequiredMixin, CreateView):
     model = Orgao
     fields = ['nome', 'sigla', 'parent', 'tipo', 'situacao', ]
     success_url = '/orgaos/'
     success_message = "Órgão foi criado com sucesso!"
 
 
-class OrgaoEditView(UpdateView):
+class OrgaoEditView(LoginRequiredMixin, UpdateView):
     model = Orgao
     fields = ['nome', 'sigla', 'parent', 'tipo', 'situacao', ]
     context_object_name = 'orgao'
 
 
-class OrgaoDeleteView(DeleteView):
+class OrgaoDeleteView(LoginRequiredMixin, DeleteView):
     model = Orgao
     success_url = reverse_lazy('orgaos_lista')
     context_object_name = 'orgao'

@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'apps.orgaos',
     'apps.assuntos',
     'apps.processos',
+    'apps.tramitacoes',
 ]
 
 MIDDLEWARE = [

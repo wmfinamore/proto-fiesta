@@ -58,7 +58,10 @@ class Processo(models.Model):
     @property
     def ultimo_tramite(self):
         tramite = self.processo_tramites.first()
-        return tramite.orgao_destino.nome
+        if tramite:
+            return tramite.orgao_destino.nome
+        else:
+            return '-'
 
     def get_absolute_url(self):
         return reverse('processos_lista')

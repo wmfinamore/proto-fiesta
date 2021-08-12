@@ -55,6 +55,11 @@ class Processo(models.Model):
         numero = self.num_processo
         return f'{numero:06}' + '/' + str(ano)
 
+    @property
+    def ultimo_tramite(self):
+        tramite = self.processo_tramites.first()
+        return tramite.orgao_destino.nome
+
     def get_absolute_url(self):
         return reverse('processos_lista')
 

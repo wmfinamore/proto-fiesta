@@ -61,6 +61,14 @@ class Processo(models.Model):
         if tramite:
             return tramite.orgao_destino.nome
         else:
+            return 'Não tramitado'
+
+    @property
+    def recepcao(self):
+        tramite_recepcao = self.processo_tramites.first()
+        if tramite_recepcao:
+            return tramite_recepcao.data_recebimento
+        else:
             return '-'
 
     def get_absolute_url(self):

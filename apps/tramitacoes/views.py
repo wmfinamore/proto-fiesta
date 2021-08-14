@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Tramite
 from .forms import TramiteForm
 
@@ -46,3 +46,8 @@ class TramitacaoUpdateView(UpdateView):
         tramite.save()
         # retornar o fommulário válido para a superclasse
         return super(TramitacaoUpdateView, self).form_valid(form)
+
+
+class TramitacaoDeleteView(DeleteView):
+    model = Tramite
+    context_object_name = 'tramite'

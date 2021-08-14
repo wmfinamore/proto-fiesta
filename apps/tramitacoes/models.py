@@ -21,6 +21,7 @@ class Tramite(models.Model):
     def __str__(self):
         return str(self.processo.numero_processo) + '-' + str(self.orgao_destino.nome)
 
+    # override da função get_absolute_url passando parâmetro para renderizar o processo que foi tramitado
     def get_absolute_url(self):
         return reverse('processo_editar', args=[self.processo.id])
 

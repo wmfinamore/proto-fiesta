@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from .models import Tramite
 
 
@@ -29,3 +29,18 @@ class TramitacaoCreateView(CreateView):
         tramite.save()
         # retornar o fommulário válido para a superclasse
         return super(TramitacaoCreateView, self).form_valid(form)
+
+
+class TramitacaoUpdateView(UpdateView):
+    model = Tramite
+    context_object_name = 'tramite'
+
+    def form_valid(self, form):
+        # recupera o formulário enviado no post, antes do commit
+        tramite = form.save(commit=False)
+        # insere o usuario informado no request
+        tramite.usuario_recepcao = self.request.user
+        # Salva o model processo
+        tramite.save()
+        # retornar o fommulário válido para a superclasse
+        return super(TramitacaoUpdateView, self).form_valid(form)

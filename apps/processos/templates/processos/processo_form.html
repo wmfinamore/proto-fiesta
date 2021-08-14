@@ -23,7 +23,11 @@
     <br>
     {% for tramites in processo.processo_tramites.all %}
         <li>
-            <lu>{{ tramites }} - {{ tramites.data_tramite }}</lu>
+            <lu>{{ tramites }} - {{ tramites.data_tramite }}
+            {% if tramites.data_recebimento is none %}
+                <a href="{% url 'tramitacao_receber' tramites.id %}" class="btn btn-warning">Receber</a>
+            {% endif %}
+            </lu>
         </li>
     {% endfor %}
 

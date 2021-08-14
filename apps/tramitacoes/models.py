@@ -3,6 +3,7 @@ from apps.processos.models import Processo
 from django.contrib.auth import get_user_model
 from apps.orgaos.models import Orgao
 import uuid
+from django.urls import reverse
 
 Usuario = get_user_model()
 
@@ -19,6 +20,9 @@ class Tramite(models.Model):
 
     def __str__(self):
         return str(self.processo.numero_processo) + '-' + str(self.orgao_destino.nome)
+
+    def get_absolute_url(self):
+        return reverse('processo_editar', args=[self.processo.id])
 
     class Meta:
         ordering = ['-data_tramite']

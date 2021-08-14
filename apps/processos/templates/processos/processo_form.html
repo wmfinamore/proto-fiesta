@@ -19,7 +19,7 @@
     {% endif %}
     <br>
     <br>
-    <h2>Trâmites</h2>
+    <h2>Trâmites</h2><a href="{% url 'tramitacao_novo' processo.id %}" class="btn btn-dark">Tramitar</a>
     <br>
     {% for tramites in processo.processo_tramites.all %}
         <li>

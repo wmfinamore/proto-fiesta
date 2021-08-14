@@ -5,6 +5,7 @@ from .models import Tramite
 class TramiteForm(forms.ModelForm):
     def __init__(self, user, *args, **kwargs):
         super(TramiteForm, self).__init__(*args, **kwargs)
+        # definidos os campos que serão apenas de leitura na criação do formulário
         self.fields['processo'].disabled = True
         self.fields['orgao_destino'].disabled = True
         self.fields['data_tramite'].disabled = True

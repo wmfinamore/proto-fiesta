@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView
 from .models import Tramite
+from .forms import TramiteForm
 
 
 class TramitacaoCreateView(CreateView):
@@ -33,6 +34,7 @@ class TramitacaoCreateView(CreateView):
 
 class TramitacaoUpdateView(UpdateView):
     model = Tramite
+    form_class = TramiteForm
     context_object_name = 'tramite'
 
     def form_valid(self, form):

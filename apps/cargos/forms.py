@@ -7,7 +7,6 @@ from apps.orgaos.models import Orgao
 class VinculoForm(forms.ModelForm):
     lotacao = TreeNodeChoiceField(queryset=Orgao.objects.all())
 
-
     # Thanks https://www.ordinarycoders.com/blog/article/using-django-form-fields-and-widgets
     data_inicio = forms.DateField(widget=forms.widgets.NumberInput(attrs={'type': 'date'}))
     data_fim = forms.DateField(widget=forms.widgets.NumberInput(attrs={'type': 'date'}), required=False)
@@ -23,4 +22,3 @@ class VinculoForm(forms.ModelForm):
             'data_inicio': 'Data de Admissão',
             'data_fim': 'Data de Demissão',
         }
-

@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Tramite
 from .forms import TramiteForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class TramitacaoCreateView(CreateView):
+class TramitacaoCreateView(LoginRequiredMixin, CreateView):
     model = Tramite
     # declarar os campos que o usuário precisa preencher
     fields = ['orgao_destino', 'despacho', ]
@@ -32,7 +33,7 @@ class TramitacaoCreateView(CreateView):
         return super(TramitacaoCreateView, self).form_valid(form)
 
 
-class TramitacaoUpdateView(UpdateView):
+class TramitacaoUpdateView(LoginRequiredMixin, UpdateView):
     model = Tramite
     form_class = TramiteForm
     context_object_name = 'tramite'
@@ -48,6 +49,6 @@ class TramitacaoUpdateView(UpdateView):
         return super(TramitacaoUpdateView, self).form_valid(form)
 
 
-class TramitacaoDeleteView(DeleteView):
+class TramitacaoDeleteView(LoginRequiredMixin, DeleteView):
     model = Tramite
     context_object_name = 'tramite'

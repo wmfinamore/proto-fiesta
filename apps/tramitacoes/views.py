@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Tramite
 from .forms import TramiteForm

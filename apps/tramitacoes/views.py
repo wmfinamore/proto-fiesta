@@ -1,6 +1,8 @@
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Tramite
 from .forms import TramiteForm
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -50,4 +52,19 @@ class TramitacaoUpdateView(LoginRequiredMixin, UpdateView):
 
 class TramitacaoDeleteView(LoginRequiredMixin, DeleteView):
     model = Tramite
+    # success_url = reverse_lazy('processo_editar')
     context_object_name = 'tramite'
+
+    def get_success_url(self):
+        return reverse_lazy('processo_editar', args=[self.object.processo.id])
+
+    #Override do método delete para validação de regra
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        # validamos se a última tramitação não foi recebida para permitir a exclusão
+        if self.object.recepcao == '-':
+            self.object.delete()
+            return HttpResponseRedirect(success_url)
+        else:
+            return HttpResponse('Tramitação já recebida não pode ser excluída')

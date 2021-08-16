@@ -55,6 +55,7 @@ class TramitacaoDeleteView(LoginRequiredMixin, DeleteView):
     # success_url = reverse_lazy('processo_editar')
     context_object_name = 'tramite'
 
+    # Override do
     def get_success_url(self):
         return reverse_lazy('processo_editar', args=[self.object.processo.id])
 
@@ -63,7 +64,7 @@ class TramitacaoDeleteView(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         success_url = self.get_success_url()
         # validamos se a última tramitação não foi recebida para permitir a exclusão
-        if self.object.recepcao == '-':
+        if self.object.processo.recepcao is None:
             self.object.delete()
             return HttpResponseRedirect(success_url)
         else:

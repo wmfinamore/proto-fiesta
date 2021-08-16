@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+
+{% block main %}
+    <h2>Trâmite</h2>
+    <br>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <h1>Você tem certeza que quer excluir a tramitação {{ tramite }} de {{ tramite.data_tramite }}?
+        </h1>
+        {{ form }}
+        <br>
+        <input type="submit" value="Confirmar" class="btn btn-danger">
+    </form>
+{% endblock %}

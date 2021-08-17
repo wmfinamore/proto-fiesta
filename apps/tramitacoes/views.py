@@ -64,7 +64,7 @@ class TramitacaoDeleteView(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         success_url = self.get_success_url()
         # validamos se a última tramitação não foi recebida para permitir a exclusão
-        if self.object.processo.recepcao is None:
+        if self.object.processo.recepcao is None and self.object.data_recebimento is None:
             self.object.delete()
             return HttpResponseRedirect(success_url)
         else:

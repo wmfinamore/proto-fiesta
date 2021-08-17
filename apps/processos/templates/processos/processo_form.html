@@ -24,10 +24,10 @@
     {% for tramites in processo.processo_tramites.all %}
         <li>
             <lu>{{ tramites }} - {{ tramites.data_tramite }}
-            {% if tramites.data_recebimento is none %}
-                <a href="{% url 'tramitacao_receber' tramites.id %}" class="btn btn-warning">Receber</a>
-                <a href="{% url 'tramitacao_excluir' tramites.id %}" class="btn btn-danger">Excluir</a>
-            {% endif %}
+                    {% if tramites.data_recebimento is none %}
+                        <a href="{% url 'tramitacao_receber' tramites.id %}" class="btn btn-warning">Receber</a>
+                        <a href="{% url 'tramitacao_excluir' tramites.id %}" class="btn btn-danger">Excluir</a>
+                    {% endif %}
             </lu>
         </li>
     {% endfor %}

@@ -28,7 +28,7 @@ class TramitacaoCreateView(LoginRequiredMixin, CreateView):
         tramite = form.save(commit=False)
         # insere o usuario informado no request
         tramite.usuario_tramite = self.request.user
-        # Salva o model processo
+        # Salva o model tramite
         tramite.save()
         # retornar o fommulário válido para a superclasse
         return super(TramitacaoCreateView, self).form_valid(form)

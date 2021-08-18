@@ -19,7 +19,10 @@
     {% endif %}
     <br>
     <br>
-    <h2>Trâmites</h2><a href="{% url 'tramitacao_novo' processo.id %}" class="btn btn-dark">Tramitar</a>
+    <h2>Trâmites</h2>
+        {% if processo.recepcao %}
+            <a href="{% url 'tramitacao_novo' processo.id %}" class="btn btn-dark">Tramitar</a>
+        {% endif %}
     <br>
     {% for tramites in processo.processo_tramites.all %}
         <li>
@@ -31,5 +34,7 @@
             </lu>
         </li>
     {% endfor %}
+    <br>
+    <br>
 
 {% endblock %}

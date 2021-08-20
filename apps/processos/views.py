@@ -1,5 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Processo
+from apps.cargos.models import Vinculo
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -48,3 +49,21 @@ class ProcessoDeleteView(LoginRequiredMixin, DeleteView):
     model = Processo
     success_url = reverse_lazy('processos_lista')
     context_object_name = 'processo'
+
+
+class CaixaListVIew(ListView):
+    model = Processo
+    template_name = 'processos/caixa_postal.html'
+    context_object_name = 'caixa'
+
+    # Override do método que define query_set da view
+    def get_queryset(self):
+        # seleciona as unidades de lotação do vinculo do usuário
+        unidade_usuario = Vinculo.objects.filter(funcionario=self.request.user)
+        """
+            retorna os processos cujo nome do último trâmite é igual as unidades
+            de lotação do usuário que fez o request
+        """
+        return Processo.objects.filter(
+            unidade_atual__in=unidade_usuario[0].lotacao.nome
+        )

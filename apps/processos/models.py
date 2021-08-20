@@ -5,6 +5,7 @@ import uuid
 from datetime import date
 from django.urls import reverse
 
+
 # Situação do Processo
 SITUACAO_UNIDADE = [
     ('A', 'Ativo'),
@@ -27,6 +28,7 @@ class Processo(models.Model):
     usuario_criacao = models.ForeignKey(Usuario, on_delete=models.PROTECT, related_name='processos_usuario')
     usuario_alteracao = models.ForeignKey(
         Usuario, on_delete=models.PROTECT, related_name='processos_alterados', null=True, blank=True)
+    unidade_atual = models.CharField(max_length=100, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         # verifica se estamos inserindo um novo processo(=0) ou se é uma atualização(>0)
@@ -62,6 +64,12 @@ class Processo(models.Model):
             return tramite.orgao_destino.nome
         else:
             return 'Não tramitado'
+
+    # função para atualizar a unidade atual do processo
+    def atualizar_unidade(self):
+        unidade = self.processo_tramites.first()
+        self.unidade_atual = unidade.orgao_destino.nome
+        self.objects.filter(id=self.id).update(unidade_atual=unidade.orgao_destino.nome)
 
     @property
     def recepcao(self):

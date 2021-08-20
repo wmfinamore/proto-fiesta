@@ -3,7 +3,7 @@ from .views import (ProcessosListView,
                     ProcessoCreateView,
                     ProcessoUpdateView,
                     ProcessoDeleteView,
-                    CaixaListVIew)
+                    CaixaListVIew,)
 
 urlpatterns = [
     path('', ProcessosListView.as_view(), name='processos_lista'),

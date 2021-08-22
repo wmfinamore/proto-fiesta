@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from apps.orgaos.models import Orgao
 import uuid
 from django.urls import reverse
-from django.db.models.signals import m2m_changed, post_save
+from django.db.models.signals import post_save, post_init
 from django.dispatch import receiver
 
 Usuario = get_user_model()
@@ -33,5 +33,5 @@ class Tramite(models.Model):
 
 # signal que atualiza a unidade atual do processo depois que uma tramitação for salva
 @receiver(post_save, sender=Tramite)
-def update_unidade_atual(sender, instance, **kwargs):
+def update_unidade_atual(sender, instance, created, **kwargs):
     instance.processo.atualizar_unidade

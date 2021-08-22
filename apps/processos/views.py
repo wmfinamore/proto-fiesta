@@ -64,6 +64,4 @@ class CaixaListVIew(ListView):
             retorna os processos cujo nome do último trâmite é igual as unidades
             de lotação do usuário que fez o request
         """
-        return Processo.objects.filter(
-            unidade_atual__in=unidade_usuario[0].lotacao.nome
-        )
+        return Processo.objects.filter(id="2d3d637b-f8be-4eea-9eb5-bb6d2f00637f")

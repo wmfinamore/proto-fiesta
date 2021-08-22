@@ -68,8 +68,7 @@ class Processo(models.Model):
     # função para atualizar a unidade atual do processo
     def atualizar_unidade(self):
         unidade = self.processo_tramites.first()
-        self.unidade_atual = unidade.orgao_destino.nome
-        self.objects.filter(id=self.id).update(unidade_atual=unidade.orgao_destino.nome)
+        self.objects.get(id=self.id).update(unidade_atual=unidade.orgao_destino.nome)
 
     @property
     def recepcao(self):

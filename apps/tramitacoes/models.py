@@ -18,7 +18,8 @@ class Tramite(models.Model):
     data_tramite = models.DateTimeField(auto_now_add=True)
     usuario_tramite = models.ForeignKey(Usuario, on_delete=models.PROTECT, related_name='usuario_tramites')
     data_recebimento = models.DateTimeField(null=True, blank=True)
-    usuario_recepcao = models.ForeignKey(Usuario, on_delete=models.PROTECT, null=True, blank=True, related_name='usuario_recepcoes')
+    usuario_recepcao = models.ForeignKey(Usuario, on_delete=models.PROTECT, null=True, blank=True,
+                                         related_name='usuario_recepcoes')
 
     def __str__(self):
         return str(self.processo.numero_processo) + '-' + str(self.orgao_destino.nome)
@@ -34,4 +35,6 @@ class Tramite(models.Model):
 # signal que atualiza a unidade atual do processo depois que uma tramitação for salva
 @receiver(post_save, sender=Tramite)
 def update_unidade_atual(sender, instance, created, **kwargs):
-    instance.processo.atualizar_unidade
+    processo = Processo.objects.get(id=instance.processo.id)
+    processo.unidade_atual = instance.orgao_destino.nome
+    processo.save()

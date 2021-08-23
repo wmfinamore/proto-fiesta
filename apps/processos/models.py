@@ -65,11 +65,6 @@ class Processo(models.Model):
         else:
             return 'Não tramitado'
 
-    # função para atualizar a unidade atual do processo
-    def atualizar_unidade(self):
-        unidade = self.processo_tramites.first()
-        self.objects.get(id=self.id).update(unidade_atual=unidade.orgao_destino.nome)
-
     @property
     def recepcao(self):
         tramite_recepcao = self.processo_tramites.first()

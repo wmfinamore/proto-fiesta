@@ -32,6 +32,7 @@ class ProcessoUpdateView(LoginRequiredMixin, UpdateView):
     model = Processo
     fields = ['interessado', 'assunto', 'resumo', 'situacao']
     context_object_name = 'processo'
+
     # Definir a função get_absolute_url no model
 
     def form_valid(self, form):
@@ -58,11 +59,14 @@ class CaixaListVIew(ListView):
 
     # Override do método que define query_set da view
     def get_queryset(self):
-        # seleciona as unidades de lotação do vinculo do usuário
-        unidade_usuario = Vinculo.objects.get(funcionario=self.request.user)
+        # seleciona os vínculos do usuário que fez o request
+        vinculos = Vinculo.objects.filter(funcionario=self.request.user)
+        data = []
+        # Criar lista para usar os dados no filtro da "caixa postal"
+        for unidade in vinculos:
+            data.append(unidade.lotacao.nome)
         """
             retorna os processos cujo nome do último trâmite é igual as unidades
             de lotação do usuário que fez o request
         """
-        unidade = unidade_usuario.lotacao.nome
-        return Processo.objects.filter(unidade_atual=unidade)
+        return Processo.objects.filter(unidade_atual__in=data)

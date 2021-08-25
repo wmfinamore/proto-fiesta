@@ -52,7 +52,7 @@ class ProcessoDeleteView(LoginRequiredMixin, DeleteView):
     context_object_name = 'processo'
 
 
-class CaixaListVIew(ListView):
+class CaixaListView(LoginRequiredMixin, ListView):
     model = Processo
     template_name = 'processos/caixa_postal.html'
     context_object_name = 'caixa'

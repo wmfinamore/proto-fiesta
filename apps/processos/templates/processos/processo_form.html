@@ -14,10 +14,6 @@
         <input type="submit" value="Salvar" class="btn btn-success">
     </form>
     <br>
-    {% if processo %}
-        <a href="" class="btn btn-danger">Excluir</a>
-    {% endif %}
-    <br>
     <br>
     <h2>Trâmites</h2>
         {% if processo.recepcao %}
@@ -25,14 +21,22 @@
         {% endif %}
     <br>
     {% for tramites in processo.processo_tramites.all %}
-        <li>
-            <lu>{{ tramites }} - {{ tramites.data_tramite }}
-                    {% if tramites.data_recebimento is none %}
-                        <a href="{% url 'tramitacao_receber' tramites.id %}" class="btn btn-warning">Receber</a>
-                        <a href="{% url 'tramitacao_excluir' tramites.id %}" class="btn btn-danger">Excluir</a>
-                    {% endif %}
-            </lu>
-        </li>
+        <div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ tramites }} - {{ tramites.data_tramite }}
+                        {% if tramites.data_recebimento is none %}
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <button type="button" class="btn btn-danger">
+                                    <a href="{% url 'tramitacao_excluir' tramites.id %}">Excluir</a>
+                                </button>
+                                <button type="button" class="btn btn-warning">
+                                    <a href="{% url 'tramitacao_receber' tramites.id %}">Receber</a>
+                                </button>
+                            </div>
+                        {% endif %}
+                </li>
+            </ul>
+        </div>
     {% endfor %}
     <br>
     <br>

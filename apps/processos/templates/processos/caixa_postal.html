@@ -3,36 +3,41 @@
 {% block main %}
     <h2>Lista de Processos</h2>
     <br>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Processo</th>
-                <th scope="col">Interessado</th>
-                <th scope="col">Assunto</th>
-                <th scope="col">Último Trâmite</th>
-                <th scope="col">Data Recepção</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for processo in caixa %}
+    {% if caixa %}
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td scope="row">{{ processo.numero_processo }}</td>
-                    <td>{{ processo.interessado }}</td>
-                    <td><a href="{% url 'processo_editar' processo.id %}">{{ processo.assunto }}</a></td>
-                    <td>{{ processo.ultimo_tramite }}</td>
-                    <td>
-                        {% if processo.recepcao %}
-                            {{ processo.recepcao }}
-                        {% else %}
-                            Não recebido
-                        {% endif %}
-                    </td>
-                    <td><a href="{% url 'processo_excluir' processo.id %}" class="btn btn-danger btn-sm">Excluir</a></td>
+                    <th scope="col">Processo</th>
+                    <th scope="col">Interessado</th>
+                    <th scope="col">Assunto</th>
+                    <th scope="col">Último Trâmite</th>
+                    <th scope="col">Data Recepção</th>
+                    <th scope="col"></th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for processo in caixa %}
+                    <tr>
+                        <td scope="row">{{ processo.numero_processo }}</td>
+                        <td>{{ processo.interessado }}</td>
+                        <td><a href="{% url 'processo_editar' processo.id %}">{{ processo.assunto }}</a></td>
+                        <td>{{ processo.ultimo_tramite }}</td>
+                        <td>
+                            {% if processo.recepcao %}
+                                {{ processo.recepcao }}
+                            {% else %}
+                                Não recebido
+                            {% endif %}
+                        </td>
+                        <td><a href="{% url 'processo_excluir' processo.id %}" class="btn btn-danger btn-sm">Excluir</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     <br>
     <a href="{% url 'processo_novo' %}" class="btn btn-primary">Novo</a>
+    {% else %}
+        <h1 class="display-4" align="center"> Caixa Postal vazia no momento.</h1>
+    {% endif %}
+
 {% endblock %}

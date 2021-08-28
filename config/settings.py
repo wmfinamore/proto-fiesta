@@ -167,8 +167,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # DEBUG TOOLBAR CONFIGURATION
-hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+# hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+# INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 # CONFIGURATION TO USE CUSTOMER MODEL
 AUTH_USER_MODEL = 'accounts.CustomUser'

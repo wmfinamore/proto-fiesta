@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 import uuid
 from datetime import date
 from django.urls import reverse
+from simple_history.models import HistoricalRecords
 
 
 # Situação do Processo
@@ -29,6 +30,7 @@ class Processo(models.Model):
     usuario_alteracao = models.ForeignKey(
         Usuario, on_delete=models.PROTECT, related_name='processos_alterados', null=True, blank=True)
     unidade_atual = models.CharField(max_length=100, null=True, blank=True)
+    history = HistoricalRecords()
 
     def save(self, *args, **kwargs):
         # verifica se estamos inserindo um novo processo(=0) ou se é uma atualização(>0)

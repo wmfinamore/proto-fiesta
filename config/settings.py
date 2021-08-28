@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'bootstrapform',
     'mptt',
+    'simple_history',
 
     # local apps
     'accounts',
@@ -79,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'

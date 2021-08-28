@@ -6,6 +6,7 @@ import uuid
 from django.urls import reverse
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
+from simple_history.models import HistoricalRecords
 
 Usuario = get_user_model()
 
@@ -20,6 +21,7 @@ class Tramite(models.Model):
     data_recebimento = models.DateTimeField(null=True, blank=True)
     usuario_recepcao = models.ForeignKey(Usuario, on_delete=models.PROTECT, null=True, blank=True,
                                          related_name='usuario_recepcoes')
+    history = HistoricalRecords()
 
     def __str__(self):
         return str(self.processo.numero_processo) + '-' + str(self.orgao_destino.nome)

@@ -18,6 +18,7 @@ django-cpf = "*"
 django-bootstrap-form = "*"
 django-mptt = "*"
 django-autocomplete-light = "*"
+django-simple-history = "==3.0.0"
 
 [requires]
 python_version = "3.9"

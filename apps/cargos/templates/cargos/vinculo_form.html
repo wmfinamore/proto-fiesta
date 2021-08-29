@@ -1,5 +1,6 @@
 {% extends '_base.html' %}
 {% load bootstrap %}
+{% load static %}
 
 {% block main %}
     {% if vinculo %}
@@ -14,4 +15,12 @@
         <input type="submit" value="Salvar" class="btn btn-success">
     </form>
 
+{% endblock %}
+
+{% block static %}
+<!--    Try using the RelatedObjectLookups-->
+<script src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
+<script src="{% static 'admin/js/jquery.init.js' %}"></script>
+<script src="{% static 'admin/js/actions.js' %}"></script>
+<script src="{% static 'admin/js/core.js' %}"></script>
 {% endblock %}

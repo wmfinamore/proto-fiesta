@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'mptt',
     'simple_history',
+    'rest_framework',
 
     # local apps
     'accounts',
@@ -69,6 +70,7 @@ INSTALLED_APPS = [
     'apps.assuntos',
     'apps.processos',
     'apps.tramitacoes',
+    'apps.api',
 ]
 
 MIDDLEWARE = [

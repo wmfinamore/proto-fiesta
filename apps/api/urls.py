@@ -1,8 +1,9 @@
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 from .views import ProcessoAPIView
 
 
-# urls para lista de processos
-urlpatterns = [
-    path('', ProcessoAPIView.as_view()),
-]
+router = SimpleRouter()
+router.register('', ProcessoAPIView, basename='processos')
+
+urlpatterns = router.urls

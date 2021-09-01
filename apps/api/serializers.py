@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from apps.processos.models import Processo
 from apps.assuntos.models import Assunto
+from django.contrib.auth import get_user_model
 
 
 # Classe implementada para incluir Nested Relationships
@@ -10,9 +11,20 @@ class AssuntoSerializer(serializers.ModelSerializer):
         fields = ['id', 'nome', 'situacao', 'level']
 
 
+User = get_user_model()
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
+
+
 # Classe que converte os dados para JSON
 class ProcessoSerializer(serializers.ModelSerializer):
     assunto = AssuntoSerializer(many=False, read_only=True)
+    usuario_criacao = UserSerializer(many=False, read_only=True)
+    usuario_alteracao = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = Processo

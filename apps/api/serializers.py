@@ -5,11 +5,18 @@ from django.contrib.auth import get_user_model
 from apps.orgaos.models import Orgao
 
 
-# Classe implementada para incluir Nested Relationships
-class AssuntoSerializer(serializers.ModelSerializer):
+class ParentAssuntoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assunto
-        fields = ['id', 'nome', 'situacao', 'level']
+        fields = ['nome']
+
+
+class AssuntoSerializer(serializers.ModelSerializer):
+    parent = ParentAssuntoSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Assunto
+        fields = ['id', 'nome', 'situacao', 'level', 'parent']
 
 
 User = get_user_model()
@@ -21,13 +28,20 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email']
 
 
-class OrgaoSerializer(serializers.ModelSerializer):
+class ParentOrgaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Orgao
-        fields = ['id', 'nome', 'sigla', 'tipo', 'situacao']
+        fields = ['nome']
 
 
-# Classe que converte os dados para JSON
+class OrgaoSerializer(serializers.ModelSerializer):
+    parent = ParentOrgaoSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Orgao
+        fields = ['id', 'nome', 'sigla', 'tipo', 'situacao', 'level', 'parent']
+
+
 class ProcessoSerializer(serializers.ModelSerializer):
     assunto = AssuntoSerializer(many=False, read_only=True)
     usuario_criacao = UserSerializer(many=False, read_only=True)

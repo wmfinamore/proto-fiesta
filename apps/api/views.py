@@ -2,8 +2,13 @@ from rest_framework import viewsets
 from apps.processos.models import Processo
 from apps.orgaos.models import Orgao
 from apps.assuntos.models import Assunto
+from apps.tramitacoes.models import Tramite
 from django.contrib.auth import get_user_model
-from .serializers import ProcessoSerializer, AssuntoSerializer, OrgaoSerializer, UserSerializer
+from .serializers import (ProcessoSerializer,
+                          AssuntoSerializer,
+                          OrgaoSerializer,
+                          UserSerializer,
+                          TramiteSerializer,)
 
 User = get_user_model()
 
@@ -38,3 +43,11 @@ class UserAPIView(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class TramiteAPIView(viewsets.ModelViewSet):
+    """
+    Lista todos os tramites realizados no sistema
+    """
+    queryset = Tramite.objects.all()
+    serializer_class = TramiteSerializer

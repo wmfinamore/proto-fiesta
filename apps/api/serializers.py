@@ -3,6 +3,7 @@ from apps.processos.models import Processo
 from apps.assuntos.models import Assunto
 from django.contrib.auth import get_user_model
 from apps.orgaos.models import Orgao
+from apps.tramitacoes.models import Tramite
 
 
 class ParentAssuntoSerializer(serializers.ModelSerializer):
@@ -60,3 +61,18 @@ class ProcessoSerializer(serializers.ModelSerializer):
                   'usuario_criacao',
                   'usuario_alteracao',
                   'unidade_atual',)
+
+
+class TramiteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tramite
+        fields = [
+            'id',
+            'processo',
+            'orgao_destino',
+            'despacho',
+            'data_tramite',
+            'usuario_tramite',
+            'data_recebimento',
+            'usuario_recepcao',
+        ]

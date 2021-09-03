@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'mptt',
     'simple_history',
     'rest_framework',
+    'drf_yasg',
 
     # local apps
     'accounts',

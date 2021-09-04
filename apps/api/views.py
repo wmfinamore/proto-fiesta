@@ -19,7 +19,7 @@ class ProcessoAPIView(viewsets.ModelViewSet):
     """
     queryset = Processo.objects.all()
     serializer_class = ProcessoSerializer
-    permission_classes = permissions.IsAuthenticatedOrReadOnly
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 class OrgaoAPIView(viewsets.ReadOnlyModelViewSet):
@@ -53,4 +53,4 @@ class TramiteAPIView(viewsets.ModelViewSet):
     queryset = Tramite.objects.all()
     serializer_class = TramiteSerializer
     filter_fields = ['processo']
-    permission_classes = permissions.IsAuthenticatedOrReadOnly
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]

@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'simple_history',
     'rest_framework',
     'drf_yasg',
+    'django_filters',
 
     # local apps
     'accounts',

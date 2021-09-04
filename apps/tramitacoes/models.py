@@ -23,6 +23,10 @@ class Tramite(models.Model):
                                          related_name='usuario_recepcoes')
     history = HistoricalRecords()
 
+    @property
+    def numero_processo(self):
+        return str(self.processo.numero_processo)
+
     def __str__(self):
         return str(self.processo.numero_processo) + '-' + str(self.orgao_destino.nome)
 

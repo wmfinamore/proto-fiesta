@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from apps.processos.models import Processo
 from apps.orgaos.models import Orgao
 from apps.assuntos.models import Assunto
@@ -19,9 +19,10 @@ class ProcessoAPIView(viewsets.ModelViewSet):
     """
     queryset = Processo.objects.all()
     serializer_class = ProcessoSerializer
+    permission_classes = permissions.IsAuthenticatedOrReadOnly
 
 
-class OrgaoAPIView(viewsets.ModelViewSet):
+class OrgaoAPIView(viewsets.ReadOnlyModelViewSet):
     """
     Lista todos os órgãos cadastrados no sistema
     """
@@ -29,7 +30,7 @@ class OrgaoAPIView(viewsets.ModelViewSet):
     serializer_class = OrgaoSerializer
 
 
-class AssuntoAPIView(viewsets.ModelViewSet):
+class AssuntoAPIView(viewsets.ReadOnlyModelViewSet):
     """
     Lista todos os assuntos cadastrados no sistema
     """
@@ -37,7 +38,7 @@ class AssuntoAPIView(viewsets.ModelViewSet):
     serializer_class = AssuntoSerializer
 
 
-class UserAPIView(viewsets.ModelViewSet):
+class UserAPIView(viewsets.ReadOnlyModelViewSet):
     """
     Lista todos os usuários cadastrados no sistema
     """
@@ -52,3 +53,4 @@ class TramiteAPIView(viewsets.ModelViewSet):
     queryset = Tramite.objects.all()
     serializer_class = TramiteSerializer
     filter_fields = ['processo']
+    permission_classes = permissions.IsAuthenticatedOrReadOnly

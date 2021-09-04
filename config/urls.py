@@ -22,7 +22,7 @@ from drf_yasg import openapi
 
 
 schema_view = get_schema_view(
-    openapi.info(
+    openapi.Info(
         title="Protocolo API",
         default_version="v1",
         description="API para o sistema de Protocolo",

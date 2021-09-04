@@ -51,3 +51,4 @@ class TramiteAPIView(viewsets.ModelViewSet):
     """
     queryset = Tramite.objects.all()
     serializer_class = TramiteSerializer
+    filter_fields = ['processo']

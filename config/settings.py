@@ -186,3 +186,8 @@ LOGOUT_REDIRECT_URL = 'login'
 
 # MPTT CONFIGURATIONS
 MPTT_ADMIN_LEVEL_INDENT = 20 # indent pixels per level globally
+
+# DJANGO REST FRAMEWORK CONFIGURATIONS
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}

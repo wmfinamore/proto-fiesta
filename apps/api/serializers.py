@@ -69,6 +69,7 @@ class TramiteSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'processo',
+            'numero_processo',
             'orgao_destino',
             'despacho',
             'data_tramite',

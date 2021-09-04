@@ -16,6 +16,22 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+schema_view = get_schema_view(
+    openapi.info(
+        title="Protocolo API",
+        default_version="v1",
+        description="API para o sistema de Protocolo",
+        contact=openapi.Contact(email="email@email.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('', include('apps.core.urls')),
@@ -28,6 +44,8 @@ urlpatterns = [
     path('processos/', include('apps.processos.urls')),
     path('tramitacoes/', include('apps.tramitacoes.urls')),
     path('api/v1/', include('apps.api.urls')),
+    path('swagger/', schema_view.with_ui(
+        'swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 
 # routes for activate debug toolbar when django debug mode is true

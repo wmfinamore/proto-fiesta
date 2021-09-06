@@ -1,9 +1,10 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from apps.processos.models import Processo
 from apps.orgaos.models import Orgao
 from apps.assuntos.models import Assunto
 from apps.tramitacoes.models import Tramite
 from django.contrib.auth import get_user_model
+from apps.cargos.models import Vinculo
 from .serializers import (ProcessoSerializer,
                           AssuntoSerializer,
                           OrgaoSerializer,
@@ -53,4 +54,22 @@ class TramiteAPIView(viewsets.ModelViewSet):
     queryset = Tramite.objects.all()
     serializer_class = TramiteSerializer
     filter_fields = ['processo']
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+
+
+class CaixaPostalAPIView(generics.ListAPIView):
+    serializer_class = ProcessoSerializer
+    permission_classes = [permissions.IsAuthenticated, ]
+
+    def get_queryset(self):
+        # seleciona os vínculos do usuário que fez o request
+        vinculos = Vinculo.objects.filter(funcionario=self.request.user)
+        data = []
+        # Criar lista para usar os dados no filtro da "caixa postal"
+        for unidade in vinculos:
+            data.append(unidade.lotacao.nome)
+        """
+            retorna os processos cujo nome do último trâmite é igual as unidades
+            de lotação do usuário que fez o request
+        """
+        return Processo.objects.filter(unidade_atual__in=data)

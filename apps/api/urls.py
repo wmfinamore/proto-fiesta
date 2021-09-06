@@ -4,7 +4,8 @@ from .views import (ProcessoAPIView,
                     OrgaoAPIView,
                     AssuntoAPIView,
                     UserAPIView,
-                    TramiteAPIView,)
+                    TramiteAPIView,
+                    CaixaPostalAPIView,)
 
 
 router = DefaultRouter()
@@ -16,4 +17,5 @@ router.register('tramitacoes', TramiteAPIView)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('caixa/', CaixaPostalAPIView.as_view()),
 ]

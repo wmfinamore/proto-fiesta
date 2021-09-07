@@ -83,9 +83,7 @@ def processo_search(request):
         form = SearchForm(request.GET)
     if form.is_valid():
         query = form.cleaned_data['query']
-        results = Processo.objects.annotate(
-            similarity=TrigramSimilarity('interessado', query)
-        ).filter(similarity__gt=0.1).order_by('-similarity')
+        results = Processo.objects.filter(interessado__icontains=query).order_by('num_processo')
     return render(request,
                   'processos/search.html',
                   {

@@ -78,7 +78,7 @@ class CaixaListView(LoginRequiredMixin, ListView):
 def processo_search(request):
     form = SearchForm()
     query = None
-    resultar = []
+    results = []
     if 'query' in request.GET:
         form = SearchForm(request.GET)
     if form.is_valid():

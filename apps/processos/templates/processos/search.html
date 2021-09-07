@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block title %}Search{% endblock %}
+{% block main %}
+    {% if query %}
+        <h1>Processos contendo " {{ query }} "</h1>
+        <h3>
+            {% with results.count as total_results %}
+                Encontrados {{ total_results }} processo{{ total_results|pluralize }}
+            {% endwith %}
+        </h3>
+        {% for processo in results %}
+            <h4>
+                <a href="{{ processo.get_absolute_url }}">{{ processo.numero_processo }}</a>
+            </h4>
+            {{ processo.resumo }}
+        {% empty %}
+            <p>
+                Não existem resultados para sua pesquisa
+            </p>
+        {% endfor %}
+        <p><a href="{% url 'processo_search' %}">Pesquisar novamente</a></p>
+    {% else %}
+        <h1>Pesquisa de Processo</h1>
+        <form method="get">
+            {{ form.as_p }}
+            <input type="submit" value="Pesquisar" class="btn btn-success">
+        </form>
+    {% endif %}
+{% endblock %}

@@ -3,6 +3,9 @@ from .models import Processo
 from apps.cargos.models import Vinculo
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.postgres.search import TrigramSimilarity
+from django.shortcuts import render
+from .forms import SearchForm
 
 
 class ProcessosListView(ListView):
@@ -70,3 +73,23 @@ class CaixaListView(LoginRequiredMixin, ListView):
             de lotação do usuário que fez o request
         """
         return Processo.objects.filter(unidade_atual__in=data)
+
+
+def processo_search(request):
+    form = SearchForm()
+    query = None
+    resultar = []
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        results = Processo.objects.annotate(
+            similarity=TrigramSimilarity('interessado', query)
+        ).filter(similarity__gt=0.1).order_by('-similarity')
+    return render(request,
+                  'processos/search.html',
+                  {
+                      'form': form,
+                      'query': query,
+                      'results': results
+                  })

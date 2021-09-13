@@ -1,0 +1,51 @@
+# pull official base image
+FROM python:3.9.6-alpine
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install psycopg2 dependencies
+RUN apk update \
+    && apk add postgresql-dev gcc python3-dev musl-dev
+
+# create directory for the app user
+RUN mkdir -p /home/proto_fiesta
+
+# create the app user
+RUN addgroup -S proto_fiesta && adduser -S proto_fiesta -G proto_fiesta
+
+# create the appropriate directories
+ENV HOME=/home/proto_fiesta
+ENV APP_HOME=/home/proto_fiesta/web
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
+RUN mkdir $APP_HOME/mediafiles
+WORKDIR $APP_HOME
+
+# Install pip
+RUN pip install --upgrade pip
+
+# Copy project
+COPY . .
+
+#Install dependencies
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /home/proto_fiesta/wheels -r requirements.txt
+
+# install dependencies
+RUN apk update && apk add libpq
+RUN pip install --no-cache /home/proto_fiesta/wheels/*
+
+# copy entrypoint.prod.sh
+COPY ./entrypoint.prod.sh .
+RUN sed -i 's/\r$//g' $APP_HOME/entrypoint.prod.sh
+RUN chmod +x $APP_HOME/entrypoint.prod.sh
+
+# chown all the files to the app user
+RUN chown -R proto_fiesta:proto_fiesta $APP_HOME
+
+# change to the app user
+USER proto_fiesta
+
+# run entrypoint.sh
+ENTRYPOINT ["/home/proto_fiesta/web/entrypoint.prod.sh"]

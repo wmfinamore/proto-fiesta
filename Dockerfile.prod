@@ -9,10 +9,10 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 
-# create directory for the app user
+# create directory for the proto-fiesta user
 RUN mkdir -p /home/proto_fiesta
 
-# create the app user
+# create the proto-fiesta user
 RUN addgroup -S proto_fiesta && adduser -S proto_fiesta -G proto_fiesta
 
 # create the appropriate directories

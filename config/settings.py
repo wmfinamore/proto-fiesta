@@ -14,13 +14,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = env("DJANGO_SECRET_KEY")
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = env("DJANGO_SECRET_KEY", config("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env.bool("DJANGO_DEBUG", default=False)
-DEBUG = config("DEBUG", default=False, cast=bool)
+DEBUG = env("DEBUG", config("DEBUG", cast=bool))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DBL_NAME'),
-        'USER': config('DBL_USER'),
-        'PASSWORD': config('DBL_PASSWORD'),
-        'HOST': config('DBL_HOST'),
-        'PORT': config('DBL_PORT')
+        'NAME': env("DB_NAME", config('DBL_NAME')),
+        'USER': env("DB_USER", config('DBL_USER')),
+        'PASSWORD': env("DB_PASSWORD", config('DBL_PASSWORD')),
+        'HOST': env("DB_HOST", config('DBL_HOST')),
+        'PORT': env("DB_PORT", config('DBL_PORT'))
     },
 }
 

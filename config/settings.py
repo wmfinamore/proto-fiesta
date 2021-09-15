@@ -20,7 +20,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", config("SECRET_KEY"))
 # DEBUG = env.bool("DJANGO_DEBUG", default=False)
 DEBUG = env("DEBUG", config("DEBUG", cast=bool))
 
-ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", config("ALLOWED_HOSTS")).split(" ")
 
 # Application definition
 
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'cpf_field',
 
     # 3thd
-    'django_extensions',
     'debug_toolbar',
     'bootstrapform',
     'mptt',

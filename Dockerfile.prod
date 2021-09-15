@@ -5,9 +5,9 @@ FROM python:3.9.6-alpine
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# install psycopg2 dependencies
+# install psycopg2 and cryptography dependencies
 RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev
+    && apk add postgresql-dev gcc python3-dev musl-dev libffi-dev openssl-dev cargo
 
 # create directory for the proto-fiesta user
 RUN mkdir -p /home/proto_fiesta

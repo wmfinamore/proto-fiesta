@@ -2,4 +2,4 @@ from django import forms
 
 
 class SearchForm(forms.Form):
-    query = forms.CharField()
+    query = forms.CharField(label='Pesquisa')

@@ -1,0 +1,49 @@
+{% extends '_base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+    <h2>Detalhes do Processo</h2>
+    <div class="mb-3 row">
+        <label for="staticId" class="col-sm-2 col-form-label">ID</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticId" value="{{ processo.id }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="staticNumero_Processo" class="col-sm-2 col-form-label">Número Processo</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticNumero_Processo" value="{{ processo.numero_processo }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="staticInteressado" class="col-sm-2 col-form-label">Interessado</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticInteressado" value="{{ processo.interessado }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="staticAssunto" class="col-sm-2 col-form-label">Assunto</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticAssunto" value="{{ processo.assunto.nome }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="staticResumo" class="col-sm-2 col-form-label">Resumo</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticResumo" value="{{ processo.resumo }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="staticSituacao" class="col-sm-2 col-form-label">Situação</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticSituacao" value="{{ processo.situacao }}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="staticUnidadeAtual" class="col-sm-2 col-form-label">Unidade Atual</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticUnidadeAtual" value="{{ processo.unidade_atual }}">
+        </div>
+    </div>
+
+{% endblock %}

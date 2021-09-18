@@ -10,7 +10,7 @@
         </h3>
         {% for processo in results %}
             <h4>
-                <a href="{% url 'processo_editar' processo.id %}">{{ processo.numero_processo }}</a>
+                <a href="{% url 'processo_detalhar' processo.id %}">{{ processo.numero_processo }}</a>
             </h4>
             {{ processo.resumo }}
         {% empty %}

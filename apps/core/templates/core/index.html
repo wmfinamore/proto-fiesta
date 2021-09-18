@@ -1,8 +1,15 @@
 {% extends '_base.html' %}
 
 {% block main %}
-        <h1><p>Bem vindo {{ user.username }}</p></h1>
-<br>
-<br>
+<div class="card">
+  <div class="card-header">
+    <h2>Proto-Fiesta</h2>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Bem vindo {{ user.username }} !!</h5>
+    <p class="card-text">Procurando alguns processos?</p>
+    <a href="{% url 'processo_search' %}" class="btn btn-primary">Vamos pesquisar ... </a>
+  </div>
+</div>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Processo
 from apps.cargos.models import Vinculo
 from django.urls import reverse_lazy
@@ -29,6 +29,11 @@ class ProcessoCreateView(LoginRequiredMixin, CreateView):
         processo.save()
         # retornar o fommulário válido para a superclasse
         return super(ProcessoCreateView, self).form_valid(form)
+
+
+class ProcessoDetailView(DetailView):
+    model = Processo
+    context_object_name = 'processo'
 
 
 class ProcessoUpdateView(LoginRequiredMixin, UpdateView):

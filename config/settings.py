@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
     # será necessário realizar um novo build da imagem (--build)
     'cpf_field',
+    'cnpj_field',
 
     # 3thd
     'debug_toolbar',

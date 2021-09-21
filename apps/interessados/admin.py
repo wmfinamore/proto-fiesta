@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Interessado
 
-# Register your models here.
+
+admin.site.register(Interessado)

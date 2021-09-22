@@ -44,7 +44,7 @@ urlpatterns = [
     path('processos/', include('apps.processos.urls')),
     path('tramitacoes/', include('apps.tramitacoes.urls')),
     path('api/v1/', include('apps.api.urls')),
-    path('api/v1/', include('apps.interessados.urls')),
+    path('interessados/', include('apps.interessados.urls')), # Criar uma rota para a api
     path('swagger/', schema_view.with_ui(
         'swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]

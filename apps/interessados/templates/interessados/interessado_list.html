@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+
+{% block main %}
+    <h2>Lista de Interessados</h2>
+    <br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Nome Social</th>
+                <th scope="col">CPF</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for interessado in interessados %}
+                <tr>
+                    <td scope="row">{{ interessado.id }}</td>
+                    <td>{{ interessado.nome }}</td>
+                    <td><a href="">{{ interessado.nome_social }}</a></td>
+                    <td>{{ interessado.cpf }}</td>
+                    <td>{{ interessado.cnpj }}</td>
+                    <td><a href="" class="btn btn-danger btn-sm">Excluir</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="" class="btn btn-primary">Novo</a>
+{% endblock %}

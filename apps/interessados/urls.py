@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import interessadosapi
+from .views import interessadosapi, InteressadosListView
 
 
-# criar uma url para a view que retorna os dados
 urlpatterns = [
+    path('', InteressadosListView.as_view(), name='interessados_lista'),
     path('api/', interessadosapi, name='InteressadosApi'),
 ]

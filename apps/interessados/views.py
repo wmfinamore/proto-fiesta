@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from .models import Interessado
 import json
+from django.views.generic import ListView
 
 
 # Cria uma função para retornar um json com os dados que queremos expor
@@ -18,3 +19,8 @@ def interessadosapi(request):
 
     data = json.dumps(list) # converte a lista em uma string no formato json
     return HttpResponse(data) # retorna o json
+
+
+class InteressadosListView(ListView):
+    model = Interessado
+    context_object_name = 'interessados'

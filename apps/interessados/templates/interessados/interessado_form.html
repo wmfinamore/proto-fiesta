@@ -4,10 +4,25 @@
 {% block main %}
 
     <h2>Novo Interessado</h2>
-    <form>
+    <form method="post">
         {% csrf_token %}
-        {{ form|bootstrap }}
-        <input type="submit" value="Salvar" class="btn btn-success">
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.cpf.errors }}
+            <label for="{{ form.cpf.id_for_label }}">CPF</label>
+            {{ form.cpf }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.nome.errors }}
+            <label for="{{ form.nome.id_for_label }}">Nome</label>
+            {{ form.nome }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.nome_social.errors }}
+            <label for="{{ form.nome_social.id_for_label }}">Nome Social</label>
+            {{ form.nome_social }}
+        </div>
+        <input type="submit"  value="Salvar" class="btn btn-success">
     </form>
 
 {% endblock %}

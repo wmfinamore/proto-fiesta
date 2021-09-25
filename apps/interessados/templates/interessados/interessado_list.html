@@ -6,7 +6,6 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Nome Social</th>
                 <th scope="col">CPF</th>
@@ -17,9 +16,8 @@
         <tbody>
             {% for interessado in interessados %}
                 <tr>
-                    <td scope="row">{{ interessado.id }}</td>
-                    <td>{{ interessado.nome }}</td>
-                    <td><a href="">{{ interessado.nome_social }}</a></td>
+                    <td><a href="{% url 'interessado_editar' interessado.id %}">{{ interessado.nome }}</a></td>
+                    <td>{{ interessado.nome_social }}</td>
                     <td>{{ interessado.cpf }}</td>
                     <td>{{ interessado.cnpj }}</td>
                     <td><a href="" class="btn btn-danger btn-sm">Excluir</a></td>

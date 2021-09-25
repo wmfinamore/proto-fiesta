@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from .models import Interessado
 import json
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 
 # Cria uma função para retornar um json com os dados que queremos expor
@@ -31,3 +31,10 @@ class InteressadoCreateView(CreateView):
     context_object_name = 'interessado'
     fields = ['nome', 'nome_social', 'cpf', 'cnpj']
     success_url = '/interessados/'
+
+
+class InteressadoUpdateView(UpdateView):
+    model = Interessado
+    context_object_name = 'interessado'
+    fields = ['nome', 'nome_social', 'cpf', 'cnpj']
+    success_url = '/interessao/'

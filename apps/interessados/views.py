@@ -37,4 +37,4 @@ class InteressadoUpdateView(UpdateView):
     model = Interessado
     context_object_name = 'interessado'
     fields = ['nome', 'nome_social', 'cpf', 'cnpj']
-    success_url = '/interessao/'
+    success_url = '/interessados/'

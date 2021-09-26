@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from .models import Interessado
 import json
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 # Cria uma função para retornar um json com os dados que queremos expor
@@ -38,3 +39,9 @@ class InteressadoUpdateView(UpdateView):
     context_object_name = 'interessado'
     fields = ['nome', 'nome_social', 'cpf', 'cnpj']
     success_url = '/interessados/'
+
+
+class InteressadoDeleteView(DeleteView):
+    model = Interessado
+    context_object_name = 'interessado'
+    success_url = reverse_lazy('interessados_lista')

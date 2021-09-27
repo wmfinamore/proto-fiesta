@@ -1,6 +1,7 @@
 from django.db import models
 from apps.assuntos.models import Assunto
 from django.contrib.auth import get_user_model
+from apps.interessados.models import Interessado
 import uuid
 from datetime import date
 from django.urls import reverse
@@ -20,7 +21,7 @@ class Processo(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     num_processo = models.PositiveBigIntegerField(
         unique_for_year=date.today().strftime("%Y"), editable=False, default=0)
-    interessado = models.CharField(max_length=200)
+    interessado = models.ForeignKey(Interessado, on_delete=models.PROTECT,null=True, blank=True, related_name='processos_interessado')
     assunto = models.ForeignKey(Assunto, on_delete=models.PROTECT, related_name='processos_assunto')
     resumo = models.TextField(null=True, blank=True)
     situacao = models.CharField(max_length=2, choices=SITUACAO_UNIDADE, default='A')

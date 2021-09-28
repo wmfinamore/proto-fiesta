@@ -4,6 +4,7 @@ from apps.assuntos.models import Assunto
 from django.contrib.auth import get_user_model
 from apps.orgaos.models import Orgao
 from apps.tramitacoes.models import Tramite
+from apps.interessados.models import Interessado
 
 
 class ParentAssuntoSerializer(serializers.ModelSerializer):
@@ -76,4 +77,16 @@ class TramiteSerializer(serializers.ModelSerializer):
             'usuario_tramite',
             'data_recebimento',
             'usuario_recepcao',
+        ]
+
+
+class InteressadoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Interessado
+        fields = [
+            'id',
+            'nome',
+            'nome_social',
+            'cpf',
+            'cnpj',
         ]

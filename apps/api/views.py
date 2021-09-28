@@ -9,7 +9,10 @@ from .serializers import (ProcessoSerializer,
                           AssuntoSerializer,
                           OrgaoSerializer,
                           UserSerializer,
-                          TramiteSerializer,)
+                          TramiteSerializer,
+                          InteressadoSerializer,)
+from apps.interessados.models import Interessado
+
 
 User = get_user_model()
 
@@ -73,3 +76,10 @@ class CaixaPostalAPIView(generics.ListAPIView):
             de lotação do usuário que fez o request
         """
         return Processo.objects.filter(unidade_atual__in=data)
+
+
+class InteressadoAPIView(viewsets.ModelViewSet):
+    """API para o app Interessados"""
+    queryset = Interessado.objects.all()
+    serializer_class = InteressadoSerializer
+    permission_classes = [permissions.IsAuthenticated, ]

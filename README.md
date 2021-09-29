@@ -9,4 +9,4 @@ Estou aproveitando o projeto para **testar conceitos** e definir meu estilo de d
 
 # **Personas**
 
-![](media/Persona1.gif)
+![](static/Persona1.gif)

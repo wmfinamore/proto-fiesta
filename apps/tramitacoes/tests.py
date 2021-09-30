@@ -5,6 +5,7 @@ from apps.processos.models import Processo
 from apps.orgaos.models import Orgao
 from apps.assuntos.models import Assunto
 from django.contrib.auth import get_user_model
+from apps.interessados.models import Interessado
 
 
 class TramiteTests(TestCase):
@@ -21,8 +22,15 @@ class TramiteTests(TestCase):
             password='A12345678a'
         )
 
+        self.interessado = Interessado.objects.create(
+            nome='Cara do Teste',
+            nome_social='Carinha',
+            cpf='965.814.590-62',
+            cnpj='27170985000150',
+        )
+
         self.processo = Processo.objects.create(
-            interessado='Cara do Teste',
+            interessado=self.interessado,
             assunto=self.assunto,
             resumo='Teste unitário',
             situacao='A',

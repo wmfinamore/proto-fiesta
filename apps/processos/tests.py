@@ -4,7 +4,6 @@ from .models import Processo
 from apps.assuntos.models import Assunto
 from django.contrib.auth import get_user_model
 from apps.interessados.models import Interessado
-from datetime import date
 
 
 class ProcessoTests(TestCase):

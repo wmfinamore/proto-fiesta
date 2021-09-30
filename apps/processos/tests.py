@@ -3,6 +3,7 @@ from django.urls import reverse
 from .models import Processo
 from apps.assuntos.models import Assunto
 from django.contrib.auth import get_user_model
+from apps.interessados.models import Interessado
 from datetime import date
 
 
@@ -20,8 +21,15 @@ class ProcessoTests(TestCase):
             password='A12345678a'
         )
 
+        self.interessado = Interessado.objects.create(
+            nome='Cara do Teste',
+            nome_social='Carinha',
+            cpf='965.814.590-62',
+            cnpj='27170985000150',
+        )
+
         self.processo = Processo.objects.create(
-            interessado='Cara do Teste',
+            interessado=self.interessado,
             assunto=self.assunto,
             resumo='Teste unitário',
             situacao='A',
@@ -30,7 +38,7 @@ class ProcessoTests(TestCase):
 
     # Teste para criação e recuperação de instância da classe Processo
     def test_processo_listing(self):
-        self.assertEqual(f'{self.processo.interessado}', 'Cara do Teste')
+        self.assertEqual(f'{self.processo.interessado.nome}', 'Cara do Teste')
         self.assertEqual(f'{self.processo.assunto.nome}', 'Teste de assunto')
         self.assertEqual(f'{self.processo.resumo}', 'Teste unitário')
         self.assertEqual(f'{self.processo.situacao}', 'A')

@@ -12,5 +12,5 @@ __pycache__/
 *.crt
 *.key
 \artefatos
-.env.prod
+artefatos/.env.prod
 .env.prod.db

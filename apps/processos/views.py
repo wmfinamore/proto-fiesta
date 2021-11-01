@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.postgres.search import TrigramSimilarity
 from django.shortcuts import render
 from .forms import SearchForm
+from django.http import HttpResponseForbidden, HttpResponse
 
 
 class ProcessosListView(ListView):
@@ -48,6 +49,9 @@ class ProcessoUpdateView(LoginRequiredMixin, UpdateView):
     # Definir a função get_absolute_url no model
 
     def form_valid(self, form):
+        # Verificar se o usuário que fez o post tem permissão para alteração de processos
+        if not self.request.user.has_perm('processos.change_processo'):
+            return HttpResponseForbidden(HttpResponse("Você não tem permissão para alterar processos"))
         # recupera o formulário enviado no post, antes do commit
         processo = form.save(commit=False)
         # insere o usuario informado no request

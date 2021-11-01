@@ -3,10 +3,14 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Tramite
 from .forms import TramiteForm
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
-class TramitacaoCreateView(LoginRequiredMixin, CreateView):
+class TramitacaoCreateView(LoginRequiredMixin,
+                           PermissionRequiredMixin,
+                           CreateView):
+    permission_required = ('tramitacoes.add_tramite')
+    permission_denied_message = "Você não tem permissão para tramitar processos"
     model = Tramite
     # declarar os campos que o usuário precisa preencher
     fields = ['orgao_destino', 'despacho', ]
@@ -34,7 +38,11 @@ class TramitacaoCreateView(LoginRequiredMixin, CreateView):
         return super(TramitacaoCreateView, self).form_valid(form)
 
 
-class TramitacaoUpdateView(LoginRequiredMixin, UpdateView):
+class TramitacaoUpdateView(LoginRequiredMixin,
+                           PermissionRequiredMixin,
+                           UpdateView):
+    permission_required = ('tramitacoes.change_tramite')
+    permission_denied_message = "Você não tem permissão para alterar tramitações"
     model = Tramite
     form_class = TramiteForm
     context_object_name = 'tramite'
@@ -50,7 +58,11 @@ class TramitacaoUpdateView(LoginRequiredMixin, UpdateView):
         return super(TramitacaoUpdateView, self).form_valid(form)
 
 
-class TramitacaoDeleteView(LoginRequiredMixin, DeleteView):
+class TramitacaoDeleteView(LoginRequiredMixin,
+                           PermissionRequiredMixin,
+                           DeleteView):
+    permission_required = ('tramitacoes.delete_tramite')
+    permission_denied_message = "Você não tem permissão para excluir tramitações"
     model = Tramite
     # success_url = reverse_lazy('processo_editar')
     context_object_name = 'tramite'

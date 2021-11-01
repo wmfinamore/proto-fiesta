@@ -2,7 +2,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from .models import Processo
 from apps.cargos.models import Vinculo
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.postgres.search import TrigramSimilarity
 from django.shortcuts import render
 from .forms import SearchForm
@@ -13,7 +13,11 @@ class ProcessosListView(ListView):
     context_object_name = 'processos'
 
 
-class ProcessoCreateView(LoginRequiredMixin, CreateView):
+class ProcessoCreateView(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         CreateView):
+    permission_required = ('processos.add_processo')
+    permission_denied_message = "Você não tem permissão para adicionar processos"
     model = Processo
     fields = ['interessado', 'assunto', 'resumo', 'situacao']
     success_url = '/processos/'
@@ -54,7 +58,11 @@ class ProcessoUpdateView(LoginRequiredMixin, UpdateView):
         return super(ProcessoUpdateView, self).form_valid(form)
 
 
-class ProcessoDeleteView(LoginRequiredMixin, DeleteView):
+class ProcessoDeleteView(LoginRequiredMixin,
+                         PermissionRequiredMixin,
+                         DeleteView):
+    permission_required = ('processos.delete_processo')
+    permission_denied_message = "Você não tem permissão para excluir processos"
     model = Processo
     success_url = reverse_lazy('processos_lista')
     context_object_name = 'processo'

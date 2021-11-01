@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from cpf_field.models import CPFField
 from cnpj_field.models import CNPJField
+from apps.core.validators import validate_data_nascimento
 
 
 class Interessado(models.Model):
@@ -10,6 +11,7 @@ class Interessado(models.Model):
     nome_social = models.CharField(max_length=100, blank=True, null=True)
     cpf = CPFField('cpf', max_length=14, blank=True, null=True, unique=True)
     cnpj = CNPJField('cnpj', max_length=14, blank=True, null=True, unique=True)
+    data_nascimento = models.DateField(blank=True, null=True, validators=[validate_data_nascimento])
 
     def __str__(self):
         return self.nome

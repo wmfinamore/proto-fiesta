@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'mptt',
     'simple_history',
     'rest_framework',
+    'rest_framework.authtoken',
     'drf_yasg',
     'django_filters',
 

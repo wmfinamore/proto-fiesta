@@ -26,6 +26,11 @@
             <label for="{{ form.nome_social.id_for_label }}" class="col-sm-2 col-form-label">Nome Social</label>
             {{ form.nome_social }}
         </div>
+        <div class="row mb-3">
+            {{ form.data_nascimento.errors }}
+            <label for="{{ form.data_nascimento.id_for_label }}" class="col-sm-2 col-form-label">Data de Nascimento</label>
+            {{ form.data_nascimento }}
+        </div>
         <input type="submit"  value="Salvar" class="btn btn-success">
     </form>
 

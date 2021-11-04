@@ -44,7 +44,7 @@ class InteressadoCreateView(
                             CreateView,):
     model = Interessado
     context_object_name = 'interessado'
-    fields = ['nome', 'nome_social', 'cpf', 'cnpj']
+    fields = ['nome', 'nome_social', 'cpf', 'cnpj', 'data_nascimento']
     success_url = '/interessados/'
     permission_required = ('interessados.add_interessado', )
     permission_denied_message = "Você não tem permissão para visualizar Interessados"
@@ -55,7 +55,7 @@ class InteressadoUpdateView(LoginRequiredMixin,
                             UpdateView,):
     model = Interessado
     context_object_name = 'interessado'
-    fields = ['nome', 'nome_social', 'cpf', 'cnpj']
+    fields = ['nome', 'nome_social', 'cpf', 'cnpj', 'data_nascimento']
     success_url = '/interessados/'
     permission_required = ('interessados.change_interessado',)
     permission_denied_message = "Você não tem permissão para atualizar Interessados"

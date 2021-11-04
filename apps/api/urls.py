@@ -1,5 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
 from .views import (ProcessoAPIView,
                     OrgaoAPIView,
                     AssuntoAPIView,
@@ -20,4 +21,5 @@ router.register('interessados', InteressadoAPIView)
 urlpatterns = [
     path('', include(router.urls)),
     path('caixa/', CaixaPostalAPIView.as_view()),
+    path('api-token-auth/', views.obtain_auth_token),
 ]

@@ -13,6 +13,18 @@ class AssuntosListView(ListView):
     model = Assunto
     context_object_name = 'assuntos'
 
+    # override da função get_queryset set para exibir apenas registros ativos
+    # para usuários sem permissão
+    def get_queryset(self):
+        # executa o get_queryset da classe pai
+        qs = super().get_queryset()
+        # verificar se o usuário que fez a requisição é super usuário
+        # ou se tem a permissão necessária
+        if self.request.user.is_superuser:
+            return qs
+        # senão filtra o queryset para exibir apenas os registros ativos
+        return qs.filter(situacao='A')
+
 
 class AssuntoCreateView(LoginRequiredMixin,
                         PermissionRequiredMixin,

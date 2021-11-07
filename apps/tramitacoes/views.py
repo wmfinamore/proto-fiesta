@@ -1,9 +1,11 @@
 from django.http import HttpResponseRedirect, HttpResponse
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, View
 from .models import Tramite
 from .forms import TramiteForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+import csv
+from datetime import datetime
 
 
 class TramitacaoCreateView(LoginRequiredMixin,
@@ -81,3 +83,25 @@ class TramitacaoDeleteView(LoginRequiredMixin,
             return HttpResponseRedirect(success_url)
         else:
             return HttpResponse('Tramitação já recebida não pode ser excluída')
+
+
+class ExportarTramitesCSV(View):
+
+    def get(self, request, **kwargs):
+
+        # definido o charset para renderização correta dos caractéres especiais latinos
+        response = HttpResponse(content_type='text/csv; charset="ISO-8859-1"')
+        response['Content-Disposition'] = 'attachment; filename="tramitacoes.csv"'
+
+        # kwargs passa um dicionário com os parâmetros informados na url
+        tramites = Tramite.objects.filter(processo=kwargs['pk'])
+
+        writer = csv.writer(response)
+        writer.writerow(['Processo', 'Despacho', 'Órgão Destino', 'Data Tramite'])
+        for tramite in tramites:
+            writer.writerow([tramite.numero_processo,
+                             tramite.despacho,
+                             tramite.orgao_destino,
+                             datetime.strftime(tramite.data_tramite, "%d/%m/%Y %H:%M:%S"),
+                             ])
+        return response

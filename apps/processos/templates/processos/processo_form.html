@@ -39,6 +39,9 @@
         </div>
     {% endfor %}
     <br>
+    {% if processo %}
+        <a href="{% url 'exportar_tramites_csv' processo.id %}" class="btn btn-success">Exportar CSV</a>
+    {% endif %}
     <br>
 
 {% endblock %}

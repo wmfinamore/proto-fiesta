@@ -14,7 +14,13 @@ class OrgaosListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['orgaos'] = Orgao.objects.all()
+        # verificar se o usuário que fez a requisição é super usuário
+        # ou se tem a permissão necessária
+        if self.request.user.is_superuser:
+            context['orgaos'] = Orgao.objects.all()
+        else:
+            # senão filtra o queryset para exibir apenas os registros ativos
+            context['orgaos'] = Orgao.objects.filter(situacao='A')
         return context
 
 

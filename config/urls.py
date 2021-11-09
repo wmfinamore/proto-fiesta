@@ -47,6 +47,7 @@ urlpatterns = [
     path('interessados/', include('apps.interessados.urls')), # Criar uma rota para a api
     path('swagger/', schema_view.with_ui(
         'swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('tinymce/', include('tinymce.urls')),
 ]
 
 # routes for activate debug toolbar when django debug mode is true

@@ -22,6 +22,7 @@ psycopg2-binary = "==2.9.1"
 gunicorn = "==20.1.0"
 django-cnpjfield = "==1"
 django-cryptography = "==1.0"
+django-tinymce = "*"
 
 [requires]
 python_version = "3.9"

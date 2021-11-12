@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Trâmites não recebidos</title>
+    </head>
+    <body>
+        <div>
+            <h1>Relatório de Trâmites Não Recebidos</h1>
+        </div>
+        <div>
+            {% for tramite in tramites %}
+                <li>{{ tramite.processo }} - {{ tramite.data_tramite }} - {{ tramite.orgao_destino }} -
+                    {{ tramite.usuario_tramite }}
+                </li>
+            {% endfor %}
+        </div>
+    </body>
+    <footer>
+        <div>
+            <p align="right">{{ data }}</p>
+        </div>
+    </footer>
+
+</html>

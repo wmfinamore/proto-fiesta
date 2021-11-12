@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 import csv
 from datetime import datetime
+from apps.core.views import Render
 
 
 class TramitacaoCreateView(LoginRequiredMixin,
@@ -105,3 +106,16 @@ class ExportarTramitesCSV(View):
                              datetime.strftime(tramite.data_tramite, "%d/%m/%Y %H:%M:%S"),
                              ])
         return response
+
+
+class TramitesNaoRecebidos(View):
+
+    def get(self, request):
+
+        tramites = Tramite.objects.filter(data_recebimento=None)
+        params = {
+            'data': datetime.date().today(),
+            'request': request,
+            'tramites': tramites,
+        }
+        return Render.render('tramitacoes/tramites_nao_recebidos.html', params, 'tramites_para_recebimento')

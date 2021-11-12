@@ -5,7 +5,7 @@ from .forms import TramiteForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 import csv
-from datetime import datetime
+from datetime import datetime, date
 from apps.core.views import Render
 
 
@@ -114,7 +114,7 @@ class TramitesNaoRecebidos(View):
 
         tramites = Tramite.objects.filter(data_recebimento=None)
         params = {
-            'data': datetime.date().today(),
+            'data': datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S"),
             'request': request,
             'tramites': tramites,
         }

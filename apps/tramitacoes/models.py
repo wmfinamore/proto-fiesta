@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from simple_history.models import HistoricalRecords
+from tinymce.models import HTMLField
+
 
 Usuario = get_user_model()
 
@@ -15,7 +17,7 @@ class Tramite(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     processo = models.ForeignKey(Processo, on_delete=models.PROTECT, related_name='processo_tramites')
     orgao_destino = models.ForeignKey(Orgao, on_delete=models.PROTECT, related_name='orgao_tramites')
-    despacho = models.TextField(null=True, blank=True)
+    despacho = HTMLField(null=True, blank=True)
     data_tramite = models.DateTimeField(auto_now_add=True)
     usuario_tramite = models.ForeignKey(Usuario, on_delete=models.PROTECT, related_name='usuario_tramites')
     data_recebimento = models.DateTimeField(null=True, blank=True)

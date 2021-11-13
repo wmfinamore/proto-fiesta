@@ -1,9 +1,11 @@
 from django import forms
 from .models import Tramite
+from tinymce.widgets import TinyMCE
 
 
 class TramiteForm(forms.ModelForm):
     data_recebimento = forms.DateField(widget=forms.widgets.NumberInput(attrs={'type': 'date'}))
+    despacho = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 
     def __init__(self, *args, **kwargs):
         super(TramiteForm, self).__init__(*args, **kwargs)

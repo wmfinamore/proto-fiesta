@@ -5,8 +5,9 @@ from .forms import TramiteForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 import csv
-from datetime import datetime, date
+from datetime import datetime
 from apps.core.views import Render
+from apps.cargos.models import Vinculo
 
 
 class TramitacaoCreateView(LoginRequiredMixin,
@@ -108,11 +109,20 @@ class ExportarTramitesCSV(View):
         return response
 
 
-class TramitesNaoRecebidos(View):
-
+class TramitesNaoRecebidos(LoginRequiredMixin,
+                           View):
+    # Gera relatórios os processos tramitados para a unidade do usuário que ainda não foram recebidos.
     def get(self, request):
-
-        tramites = Tramite.objects.filter(data_recebimento=None)
+        vinculos = Vinculo.objects.filter(funcionario=request.user)
+        data = []
+        # Criar lista para usar os dados no filtro do relatório
+        for unidade in vinculos:
+            data.append(unidade.lotacao)
+        """
+            retorna os processos último trâmite é igual as unidades
+            de lotação do usuário que fez o request
+        """
+        tramites = Tramite.objects.filter(data_recebimento=None, orgao_destino__in=data)
         params = {
             'data': datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S"),
             'request': request,

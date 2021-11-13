@@ -5,28 +5,36 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'processos_lista' %}">Protocolo <span class="sr-only">(current)</span></a>
-              </li>
+              {% if user.is_superuser %}
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'processos_lista' %}">Protocolo <span class="sr-only">(current)</span></a>
+                  </li>
+              {% endif %}
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'caixa_lista' %}">Caixa Postal<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="{% url 'vinculos_lista' %}">Funcionários</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'interessados_lista' %}">Interessados</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'assuntos_lista' %}">Assuntos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'orgaos_lista' %}">Órgãos</a>
-              </li>
-              <li class="nav-item">
+              {% if user.is_superuser %}
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'interessados_lista' %}">Interessados</a>
+                  </li>
+              {% endif %}
+              {% if user.is_superuser %}
+                  <li class="nav-item active">
+                    <a class="nav-link active" href="{% url 'assuntos_lista' %}">Assuntos</a>
+                  </li>
+              {% endif %}
+              {% if user.is_superuser %}
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'orgaos_lista' %}">Órgãos</a>
+                  </li>
+              {% endif %}
+              <li class="nav-item active">
                 <a class="nav-link" href="{% url 'cargos_lista' %}">Cargos</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                   {% if user.username %}
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                   {% else %}

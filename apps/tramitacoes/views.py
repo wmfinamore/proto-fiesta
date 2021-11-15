@@ -1,3 +1,5 @@
+import json
+
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import CreateView, UpdateView, DeleteView, View
 from .models import Tramite
@@ -129,3 +131,21 @@ class TramitesNaoRecebidos(LoginRequiredMixin,
             'tramites': tramites,
         }
         return Render.render('tramitacoes/tramites_nao_recebidos.html', params, 'tramites_para_recebimento')
+
+
+class ReceberProcesso(View):
+    def post(self, *args, **kwargs):
+        tramite = Tramite.objects.get(id=kwargs['pk'])
+        if tramite.data_recebimento is None:
+            tramite.data_recebimento = datetime.now()
+            tramite.usuario_recepcao = self.request.user
+            tramite.save()
+
+            response = json.dumps(
+                {
+                    'mensagem': 'Requisição executada',
+                }
+            )
+            return HttpResponse(response, content_type='application/json')
+        else:
+            pass

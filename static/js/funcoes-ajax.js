@@ -1,10 +1,10 @@
 function receberProcesso(id) {
     console.log(id);
-    token = document.getElementsByName("csrfmidlewaretoken")[0].value;
+    token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 
     $.ajax({
         type: 'POST',
-        url: '/tramitacoes/receber-processo/' + id,
+        url: '/tramitacoes/receber-processo/' + id + '/',
         data: {
             csrfmiddlewaretoken: token
         },

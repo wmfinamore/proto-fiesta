@@ -10,6 +10,7 @@ import csv
 from datetime import datetime
 from apps.core.views import Render
 from apps.cargos.models import Vinculo
+from apps.processos.models import Processo
 
 
 class TramitacaoCreateView(LoginRequiredMixin,
@@ -135,7 +136,8 @@ class TramitesNaoRecebidos(LoginRequiredMixin,
 
 class ReceberProcesso(View):
     def post(self, *args, **kwargs):
-        tramite = Tramite.objects.get(id=kwargs['pk'])
+        processo = Processo.objects.get(id=kwargs['pk'])
+        tramite = Tramite.objects.filter(processo=processo.id).first()
         if tramite.data_recebimento is None:
             tramite.data_recebimento = datetime.now()
             tramite.usuario_recepcao = self.request.user

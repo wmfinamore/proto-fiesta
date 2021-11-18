@@ -8,9 +8,5 @@ function receberProcesso(id) {
         data: {
             csrfmiddlewaretoken: token
         },
-        success: function(result) {
-            $("#mensagem").text(result.mensagem);
-            $("#horas_atualizadas").text(result.horas);
-        }
     });
 }

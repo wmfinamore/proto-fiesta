@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block main %}
     <h2>Lista de Processos</h2>
@@ -12,6 +13,7 @@
                     <th scope="col">Assunto</th>
                     <th scope="col">Último Trâmite</th>
                     <th scope="col">Data Recepção</th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -28,6 +30,12 @@
                             {% else %}
                                 Não recebido
                             {% endif %}
+                        </td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <button onclick="receberProcesso({{ processo.id }})" class="btn btn-success btn-sm" type="submit">Receber</button>
+                            </form>
                         </td>
                         <td><a href="{% url 'processo_excluir' processo.id %}" class="btn btn-danger btn-sm">Excluir</a></td>
                     </tr>
@@ -47,4 +55,9 @@
         <h1 class="display-4" align="center"> Caixa Postal vazia no momento.</h1>
     {% endif %}
 
+{% endblock %}
+
+{% block static %}
+    <script src="{% static 'js/funcoes-ajax.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
 {% endblock %}

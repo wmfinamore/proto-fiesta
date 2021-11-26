@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-{% load bootstrap %}
+{% load crispy_form_tags %}
 
 {% block media %}
     {{ form.media }}
@@ -12,7 +12,7 @@
     <br>
     <form method="post">
         {% csrf_token %}
-        {{ form|bootstrap }}
+        {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 

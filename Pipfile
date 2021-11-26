@@ -24,6 +24,7 @@ django-cnpjfield = "==1"
 django-cryptography = "==1.0"
 django-tinymce = "*"
 xhtml2pdf = "*"
+crispy-bootstrap5 = "*"
 
 [requires]
 python_version = "3.9"

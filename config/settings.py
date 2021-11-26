@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'tinymce',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
     # local apps
     'accounts',
@@ -208,3 +210,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
 }
+
+# Crispy bootstrap5 configurations
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

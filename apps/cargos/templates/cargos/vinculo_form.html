@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-{% load bootstrap %}
+{% load crispy_form_tags %}
 {% load static %}
 
 {% block main %}
@@ -11,7 +11,7 @@
     <br>
     <form method="post">
         {% csrf_token %}
-        {{ form|bootstrap }}
+        {{ form|crispy }}
         <input type="submit" value="Salvar" class="btn btn-success">
     </form>
 

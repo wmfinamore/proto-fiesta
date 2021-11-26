@@ -1,14 +1,18 @@
 {% extends '_base.html' %}
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 
 {% block menu %}
 
 {% endblock %}
 
 {% block main %}
+<div>
+    <h2 align="left">Login</h2>
+    <br>
     <form method="post">
         {% csrf_token %}
-        {{ form|bootstrap }}
+        {{ form|crispy }}
         <button type="submit" class="btn btn-info">Login</button>
     </form>
+</div>
 {% endblock %}

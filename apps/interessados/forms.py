@@ -1,4 +1,5 @@
 from django import forms
+from .models import Interessado
 from crispy_forms.layout import Submit
 from crispy_forms.helper import FormHelper
 from apps.core.validators import validate_data_nascimento
@@ -6,7 +7,8 @@ from cpf_field.forms import CPFFieldForm
 from cnpj_field.forms import CNPJFieldForm
 
 
-class InteressadoForm(forms.Form):
+class InteressadoForm(forms.ModelForm):
+
     nome = forms.CharField(
         label="Nome",
         max_length=100,
@@ -32,6 +34,16 @@ class InteressadoForm(forms.Form):
     cnpj = CNPJFieldForm(
         label_suffix="CNPJ",
     )
+
+    class Meta:
+        model = Interessado
+        fields = [
+            'nome',
+            'nome_social',
+            'data_nascimento',
+            'cpf',
+            'cnpj',
+        ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

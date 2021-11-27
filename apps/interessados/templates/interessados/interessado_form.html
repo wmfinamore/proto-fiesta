@@ -1,5 +1,6 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+{% crispy interessado_form interessado_form.helper %}
 
 {% block main %}
 
@@ -10,28 +11,7 @@
     {% endif %}
     <form method="post">
         {% csrf_token %}
-        {{ form.non_field_errors }}
-        <div class="row mb-3">
-            {{ form.cpf.errors }}
-            <label for="{{ form.cpf.id_for_label }}" class="col-sm-2 col-form-label">CPF</label>
-            {{ form.cpf }}
-        </div>
-        <div class="row mb-3">
-            {{ form.nome.errors }}
-            <label for="{{ form.nome.id_for_label }}" class="col-sm-2 col-form-label">Nome</label>
-            {{ form.nome }}
-        </div>
-        <div class="row mb-3">
-            {{ form.nome_social.errors }}
-            <label for="{{ form.nome_social.id_for_label }}" class="col-sm-2 col-form-label">Nome Social</label>
-            {{ form.nome_social }}
-        </div>
-        <div class="row mb-3">
-            {{ form.data_nascimento.errors }}
-            <label for="{{ form.data_nascimento.id_for_label }}" class="col-sm-2 col-form-label">Data de Nascimento</label>
-            {{ form.data_nascimento }}
-        </div>
-        <input type="submit"  value="Salvar" class="btn btn-success">
+        {% crispy form %}
     </form>
 
 {% endblock %}

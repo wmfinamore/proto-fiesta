@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from .models import Interessado
+from .forms import InteressadoForm
 import json
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -43,6 +44,7 @@ class InteressadoCreateView(
                             PermissionRequiredMixin,
                             CreateView,):
     model = Interessado
+    form_class = InteressadoForm
     context_object_name = 'interessado'
     fields = ['nome', 'nome_social', 'cpf', 'cnpj', 'data_nascimento']
     success_url = '/interessados/'
@@ -54,6 +56,7 @@ class InteressadoUpdateView(LoginRequiredMixin,
                             PermissionRequiredMixin,
                             UpdateView,):
     model = Interessado
+    form_class = InteressadoForm
     context_object_name = 'interessado'
     fields = ['nome', 'nome_social', 'cpf', 'cnpj', 'data_nascimento']
     success_url = '/interessados/'

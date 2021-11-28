@@ -1,38 +1,18 @@
 from django import forms
 from .models import Interessado
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
-from crispy_forms.helper import FormHelper
-from apps.core.validators import validate_data_nascimento
 from cpf_field.forms import CPFFieldForm
 from cnpj_field.forms import CNPJFieldForm
+# Crispy Helper
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Field, Row
 
 
 class InteressadoForm(forms.ModelForm):
 
-    nome = forms.CharField(
-        label="Nome",
-        max_length=100,
-        required=True,
-    )
-
-    nome_social = forms.CharField(
-        label="Nome Social",
-        max_length=100,
-        required=False,
-    )
-
     data_nascimento = forms.DateField(
-        label="Data de Nascimento",
-        validators=[validate_data_nascimento],
-        required=False
-    )
-
-    cpf = CPFFieldForm(
-        label_suffix="CPF",
-    )
-
-    cnpj = CNPJFieldForm(
-        label_suffix="CNPJ",
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
     )
 
     class Meta:
@@ -50,7 +30,7 @@ class InteressadoForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Fieldset(
-                'Insira ou altere os dados da pessoa interessado no processo',
+                'Dados do Interessado',
                 'nome',
                 'nome_social',
                 'data_nascimento',
@@ -58,6 +38,6 @@ class InteressadoForm(forms.ModelForm):
                 'cnpj',
             ),
             ButtonHolder(
-                Submit('submit', 'Salvar', css_class='button blue')
+                Submit('submit', 'Salvar')
             )
         )

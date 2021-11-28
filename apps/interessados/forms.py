@@ -1,6 +1,6 @@
 from django import forms
 from .models import Interessado
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 from crispy_forms.helper import FormHelper
 from apps.core.validators import validate_data_nascimento
 from cpf_field.forms import CPFFieldForm
@@ -48,9 +48,16 @@ class InteressadoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = 'id_interessadoForm'
-        self.helper.form_class = 'blueForms'
-        self.helper.form_method = 'post'
-        self.helper.form_action = 'submit_survey'
-
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.layout = Layout(
+            Fieldset(
+                'Insira ou altere os dados da pessoa interessado no processo',
+                'nome',
+                'nome_social',
+                'data_nascimento',
+                'cpf',
+                'cnpj',
+            ),
+            ButtonHolder(
+                Submit('submit', 'Salvar', css_class='button blue')
+            )
+        )

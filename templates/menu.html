@@ -43,6 +43,22 @@
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
                   {% endif %}
               </li>
+              <li class="nav-item dropdown active">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropDown"
+                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Usuário
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      {% if user.username %}
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                      {% else %}
+                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                      {% endif %}
+                      {% if user.username %}
+                        <a class="dropdown-item" href="{% url 'password_change' %}">Alterar Senha</a>
+                      {% endif %}
+                  </div>
+              </li>
             </ul>
           </div>
 </nav>

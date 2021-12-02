@@ -51,11 +51,13 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       {% if user.username %}
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        <a class="dropdown-item" href="{% url 'password_change' %}">Alterar Senha</a>
                       {% else %}
                         <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                        <a class="dropdown-item" href="{% url 'password_reset' %}">Esqueci minha senha :O </a>
                       {% endif %}
                       {% if user.username %}
-                        <a class="dropdown-item" href="{% url 'password_change' %}">Alterar Senha</a>
+
                       {% endif %}
                   </div>
               </li>

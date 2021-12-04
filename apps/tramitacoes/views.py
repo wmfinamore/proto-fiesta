@@ -135,19 +135,15 @@ class TramitesNaoRecebidos(LoginRequiredMixin,
 
 
 class ReceberProcesso(View):
-    def post(self, *args, **kwargs):
+
+    def get(self, *args, **kwargs):
         processo = Processo.objects.get(id=kwargs['pk'])
         tramite = Tramite.objects.filter(processo=processo.id).first()
+        success_url = reverse_lazy('processos_lista')
         if tramite.data_recebimento is None:
             tramite.data_recebimento = datetime.now()
             tramite.usuario_recepcao = self.request.user
             tramite.save()
-
-            response = json.dumps(
-                {
-                    'mensagem': 'Requisição executada',
-                }
-            )
-            return HttpResponse(response, content_type='application/json')
+            return HttpResponseRedirect(success_url)
         else:
-            pass
+            return HttpResponseRedirect(success_url)

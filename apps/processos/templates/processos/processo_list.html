@@ -25,7 +25,7 @@
                         {% if processo.recepcao %}
                             {{ processo.recepcao }}
                         {% else %}
-                            Não recebido
+                            <a href="{% url 'processo_receber' processo.id %}" class="btn btn-warning">Não recebido. Receber?</a>
                         {% endif %}
                     </td>
                     <td><a href="{% url 'processo_excluir' processo.id %}" class="btn btn-danger btn-sm">Excluir</a></td>

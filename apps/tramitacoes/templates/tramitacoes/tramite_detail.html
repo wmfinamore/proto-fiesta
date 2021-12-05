@@ -1,11 +1,18 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
 
+{% block media %}
+    {{ form.media }}
+{% endblock %}
+
 {% block main %}
 
     <h2>Trâmite</h2>
     <br>
     <br>
-    {{ tramite.despacho }}
+<!--    Tag do template para renderizar conteúdo HTML-->
+    {% autoescape off %}
+        {{ tramite.despacho }}
+    {% endautoescape %}
 
 {% endblock %}

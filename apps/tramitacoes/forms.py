@@ -3,7 +3,7 @@ from .models import Tramite
 
 
 class TramiteForm(forms.ModelForm):
-    data_recebimento = forms.DateField(widget=forms.widgets.NumberInput(attrs={'type': 'date'}))
+    data_recebimento = forms.DateField(widget=forms.widgets.TextInput(attrs={'type': 'date'}))
 
     def __init__(self, *args, **kwargs):
         super(TramiteForm, self).__init__(*args, **kwargs)

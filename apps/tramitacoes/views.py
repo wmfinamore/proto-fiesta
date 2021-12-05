@@ -1,7 +1,7 @@
 import json
 
 from django.http import HttpResponseRedirect, HttpResponse
-from django.views.generic import CreateView, UpdateView, DeleteView, View
+from django.views.generic import CreateView, UpdateView, DeleteView, View, DetailView
 from .models import Tramite
 from .forms import TramiteForm
 from django.urls import reverse_lazy
@@ -147,3 +147,8 @@ class ReceberProcesso(View):
             return HttpResponseRedirect(success_url)
         else:
             return HttpResponseRedirect(success_url)
+
+
+class TramitacaoDetailView(DetailView):
+    model = Tramite
+    context_object_name = 'tramite'

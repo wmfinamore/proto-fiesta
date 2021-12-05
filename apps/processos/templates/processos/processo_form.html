@@ -23,7 +23,10 @@
     {% for tramites in processo.processo_tramites.all %}
         <div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{ tramites }} - {{ tramites.data_tramite }}
+                <li class="list-group-item">
+                    <a href="{% url 'tramitacao_detalhar' tramites.id %}">
+                        {{ tramites }} - {{ tramites.data_tramite }}
+                    </a>
                         {% if tramites.data_recebimento is none %}
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <button type="button" class="btn btn-danger">

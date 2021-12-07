@@ -45,11 +45,13 @@
     <br>
     <div class="row justify-content-start">
         <div class="col-1">
-            <a href="{% url 'processo_novo' %}" class="btn btn-primary">Novo</a>
+            <a href="{% url 'processo_novo' %}" class="btn btn-success">Novo</a>
         </div>
         <div class="col-4">
             <a href="{% url 'tramites_nao_recebidos' %}" class="btn btn-info">Relatório de Não Recebidos</a>
         </div>
+        <br>
+        <br>
     </div>
     {% else %}
         <h1 class="display-4" align="center"> Caixa Postal vazia no momento.</h1>

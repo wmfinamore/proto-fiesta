@@ -100,9 +100,9 @@ def processo_search(request):
         form = SearchForm(request.GET)
     if form.is_valid():
         query = form.cleaned_data['query']
-        # results = Processo.objects.filter(interessado__icontains=query).order_by('num_processo')
+        # Pesquisa por similaridade com o nome do interessado do processo
         results = Processo.objects.annotate(
-            similarity=TrigramSimilarity('interessado', query)
+            similarity=TrigramSimilarity('interessado__nome', query)
         ).filter(similarity__gt=0.1).order_by('-similarity')
     return render(request,
                   'processos/search.html',

@@ -5,6 +5,9 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {% endblock %}
 
+{% block media %}
+{% endblock %}
+
 {% block main %}
     {% if processo %}
         <h2>Editar Processo</h2>
@@ -14,7 +17,7 @@
     <br>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <input type="submit" value="Salvar" class="btn btn-success">
     </form>
     <br>
@@ -59,11 +62,21 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#id_interessado').select2();
-        });
-        $(document).ready(function() {
-            $('#id_assunto').select2();
+        $(document).ready(function () {
+            $('#id_interessado').select2({
+                ajax: {
+                    url: '/api/v1/interessados/',
+                    dataType: 'json',
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {id: item.id, text: item.nome};
+                            })
+                        };
+                    }
+                },
+                minimumInputLength: 3
+            });
         });
     </script>
 {% endblock %}

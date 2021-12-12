@@ -83,3 +83,12 @@ class InteressadoAPIView(viewsets.ModelViewSet):
     queryset = Interessado.objects.all()
     serializer_class = InteressadoSerializer
     permission_classes = [permissions.IsAuthenticated, ]
+
+    def get_queryset(self):
+        # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
+        # formulário de processos ou outros que busquem interessados pelo nome
+        if self.request.is_ajax():
+            term = self.request.GET.get('term')
+            interessados = Interessado.objects.filter(nome__icontains=term)
+            return interessados
+        return Interessado.objects.all()

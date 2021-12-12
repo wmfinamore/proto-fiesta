@@ -21,7 +21,6 @@ class ProcessoCreateView(LoginRequiredMixin,
     permission_required = ('processos.add_processo')
     permission_denied_message = "Você não tem permissão para adicionar processos"
     form_class = ProcessoForm
-    # fields = ['interessado', 'assunto', 'resumo', 'situacao']
     success_url = '/processos/'
     success_message = 'Processo foi criado com sucesso!'
     template_name = 'processos/processo_form.html'

@@ -44,7 +44,7 @@ class ProcessoDetailView(DetailView):
 
 class ProcessoUpdateView(LoginRequiredMixin, UpdateView):
     model = Processo
-    fields = ['interessado', 'assunto', 'resumo', 'situacao']
+    form_class = ProcessoForm
     context_object_name = 'processo'
 
     # Definir a função get_absolute_url no model

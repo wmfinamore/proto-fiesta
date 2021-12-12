@@ -1,5 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Processo
+from .forms import ProcessoForm
 from apps.cargos.models import Vinculo
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -19,10 +20,11 @@ class ProcessoCreateView(LoginRequiredMixin,
                          CreateView):
     permission_required = ('processos.add_processo')
     permission_denied_message = "Você não tem permissão para adicionar processos"
-    model = Processo
-    fields = ['interessado', 'assunto', 'resumo', 'situacao']
+    form_class = ProcessoForm
+    # fields = ['interessado', 'assunto', 'resumo', 'situacao']
     success_url = '/processos/'
     success_message = 'Processo foi criado com sucesso!'
+    template_name = 'processos/processo_form.html'
 
     # override form_valid
     def form_valid(self, form):

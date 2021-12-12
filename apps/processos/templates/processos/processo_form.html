@@ -1,6 +1,10 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
 
+{% block link %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
 {% block main %}
     {% if processo %}
         <h2>Editar Processo</h2>
@@ -47,4 +51,8 @@
     {% endif %}
     <br>
 
+{% endblock %}
+
+{% block static %}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 {% endblock %}

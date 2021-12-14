@@ -41,6 +41,15 @@ class AssuntoAPIView(viewsets.ReadOnlyModelViewSet):
     queryset = Assunto.objects.all()
     serializer_class = AssuntoSerializer
 
+    def get_queryset(self):
+        # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
+        # formulário de processos ou outros que busquem interessados pelo nome
+        if self.request.is_ajax():
+            term = self.request.GET.get('term')
+            assuntos = Assunto.objects.filter(nome__icontains=term)
+            return assuntos
+        return Assunto.objects.all()
+
 
 class UserAPIView(viewsets.ReadOnlyModelViewSet):
     """

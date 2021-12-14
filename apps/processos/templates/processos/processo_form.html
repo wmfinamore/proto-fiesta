@@ -77,6 +77,20 @@
                 },
                 minimumInputLength: 3
             });
+            $('#id_assunto').select2({
+                ajax: {
+                    url: '/api/v1/assuntos/',
+                    dataType: 'json',
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {id: item.id, text: item.nome};
+                            })
+                        };
+                    }
+                },
+                minimumInputLength: 3
+            });
         });
     </script>
 {% endblock %}

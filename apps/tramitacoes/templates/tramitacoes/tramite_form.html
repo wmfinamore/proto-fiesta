@@ -1,8 +1,18 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
 
+{% block link %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
 {% block media %}
     {{ form.media }}
+    <style>
+        #id_orgao_destino {
+            position: relative;
+            width: 30%;
+        }
+    </style>
 {% endblock %}
 
 {% block main %}
@@ -16,4 +26,29 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 
+{% endblock %}
+
+{% block static %}
+<!--  Observar a ordem em que o javascript é incluido no template  -->
+<!-- Revisar o jQuery renderizado para garantir que ele não está sendo carregado duas vezes na página -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#id_orgao_destino').select2({
+                ajax: {
+                    url: '/api/v1/orgaos/',
+                    dataType: 'json',
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {id: item.id, text: item.nome};
+                            })
+                        };
+                    }
+                },
+                minimumInputLength: 3
+            });
+        });
+    </script>
 {% endblock %}

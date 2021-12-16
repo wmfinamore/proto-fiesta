@@ -33,6 +33,15 @@ class OrgaoAPIView(viewsets.ReadOnlyModelViewSet):
     queryset = Orgao.objects.all()
     serializer_class = OrgaoSerializer
 
+    def get_queryset(self):
+        # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
+        # formulário de trâmites ou outros que busquem órgãos pelo nome
+        if self.request.is_ajax():
+            term = self.request.GET.get('term')
+            orgaos = Orgao.objects.filter(nome__icontains=term)
+            return orgaos
+        return Orgao.objects.all()
+
 
 class AssuntoAPIView(viewsets.ReadOnlyModelViewSet):
     """

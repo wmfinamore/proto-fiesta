@@ -14,6 +14,15 @@ class ProcessosListView(ListView):
     model = Processo
     context_object_name = 'processos'
 
+    def get_queryset(self):
+        # Override sobre a função get_query para otimizar as pesquisas
+        # select_related funciona como inner join para trazer os dados
+        # das chaves estrangeiras em uma única consulta
+        processos = Processo.objects.\
+            select_related('interessado').\
+            select_related('assunto').all()
+        return processos
+
 
 class ProcessoCreateView(LoginRequiredMixin,
                          PermissionRequiredMixin,

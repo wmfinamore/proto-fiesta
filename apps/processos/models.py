@@ -62,7 +62,8 @@ class Processo(models.Model):
 
     @property
     def ultimo_tramite(self):
-        tramite = self.processo_tramites.first()
+        # Usando select_related para otimizar a consulta do banco de dados
+        tramite = self.processo_tramites.select_related('orgao_destino').first()
         if tramite:
             return tramite.orgao_destino.nome
         else:

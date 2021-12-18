@@ -6,6 +6,7 @@ import uuid
 from datetime import date
 from django.urls import reverse
 from simple_history.models import HistoricalRecords
+from tinymce.models import HTMLField
 
 
 # Situação do Processo
@@ -23,7 +24,7 @@ class Processo(models.Model):
         unique_for_year=date.today().strftime("%Y"), editable=False, default=0)
     interessado = models.ForeignKey(Interessado, on_delete=models.PROTECT,null=True, blank=True, related_name='processos_interessado')
     assunto = models.ForeignKey(Assunto, on_delete=models.PROTECT, related_name='processos_assunto')
-    resumo = models.TextField(null=True, blank=True)
+    resumo = HTMLField(null=True, blank=True)
     situacao = models.CharField(max_length=2, choices=SITUACAO_UNIDADE, default='A')
     data_criacao = models.DateTimeField(auto_now_add=True, editable=False)
     data_atualizacao = models.DateTimeField(auto_now=True, editable=False)

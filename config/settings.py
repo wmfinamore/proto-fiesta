@@ -190,9 +190,9 @@ TINYMCE_DEFAULT_CONFIG = {
     'selector': 'textarea',
     'theme': 'silver',
     'plugins': '''
-            textcolor save link image media preview codesample contextmenu
+            save link image media preview codesample
             table code lists fullscreen  insertdatetime  nonbreaking
-            contextmenu directionality searchreplace wordcount visualblocks
+            directionality searchreplace wordcount visualblocks
             visualchars code fullscreen autolink lists  charmap print  hr
             anchor pagebreak
             ''',
@@ -204,11 +204,10 @@ TINYMCE_DEFAULT_CONFIG = {
             ''',
     'toolbar2': '''
             visualblocks visualchars |
-            charmap hr pagebreak nonbreaking anchor |  code |
+            charmap hr pagebreak nonbreaking |
             ''',
-    'contextmenu': 'formats | link image',
-    'menubar': True,
-    'statusbar': True,
+    'menubar': False,
+    'statusbar': False,
 }
 
 # Crispy bootstrap5 configurations

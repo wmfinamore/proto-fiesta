@@ -38,6 +38,7 @@
             $('#id_orgao_destino').select2({
                 ajax: {
                     url: '/api/v1/orgaos/',
+                    headers:{'X-CSRFToken':'{{ csrf_token }}'},
                     dataType: 'json',
                     processResults: function (data) {
                         return {

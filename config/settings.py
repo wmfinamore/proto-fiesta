@@ -41,7 +41,6 @@ INSTALLED_APPS = [
 
     # 3thd
     'debug_toolbar',
-    'bootstrapform',
     'mptt',
     'simple_history',
     'rest_framework',

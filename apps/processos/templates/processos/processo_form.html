@@ -77,6 +77,7 @@
             $('#id_interessado').select2({
                 ajax: {
                     url: '/api/v1/interessados/',
+                    headers:{'X-CSRFToken':'{{ csrf_token }}'},
                     dataType: 'json',
                     processResults: function (data) {
                         return {
@@ -91,6 +92,7 @@
             $('#id_assunto').select2({
                 ajax: {
                     url: '/api/v1/assuntos/',
+                    headers:{'X-CSRFToken':'{{ csrf_token }}'},
                     dataType: 'json',
                     processResults: function (data) {
                         return {

@@ -13,9 +13,14 @@
         {{ form|crispy }}
         <input type="submit" value="Salvar" class="btn btn-success">
     </form>
-    <br>
-    {% if orgao %}
-        <a href="{% url 'orgao_excluir' orgao.id %}" class="btn btn-danger">Excluir</a>
-    {% endif %}
+    <div>
+        <br>
+        {% if orgao %}
+            <a href="{% url 'orgao_excluir' orgao.id %}" class="btn btn-danger">Excluir</a>
+        {% endif %}
+        <br>
+        <br>
+    </div>
+
 
 {% endblock %}

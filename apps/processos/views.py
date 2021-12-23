@@ -11,6 +11,7 @@ from django.http import HttpResponseForbidden, HttpResponse
 
 
 class ProcessosListView(ListView):
+    paginate_by = 10
     model = Processo
     context_object_name = 'processos'
 

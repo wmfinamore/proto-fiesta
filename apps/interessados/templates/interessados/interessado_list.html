@@ -27,7 +27,23 @@
             {% endfor %}
         </tbody>
     </table>
-    <br>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; primeira</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+            {% if page_obj.has_next %}
+                 <a href="?page={{ page_obj.next_page_number }}">próxima</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">última</a>
+            {% endif %}
+        </span>
+        <br>
+        <br>
+    </div>
     <div>
         <br>
         <a href="{% url 'interessado_novo' %}" class="btn btn-success">Novo</a>

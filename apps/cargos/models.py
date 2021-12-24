@@ -27,6 +27,9 @@ class Vinculo(models.Model):
     data_inclusao = models.DateTimeField(auto_now_add=True)
     data_alteracao = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-data_inclusao']
+
     @property
     def nome_completo(self):
         return self.funcionario.get_full_name()

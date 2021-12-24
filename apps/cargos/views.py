@@ -13,6 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 
 
 class CargosListView(ListView):
+    paginate_by = 5
     model = Cargo
     context_object_name = 'cargos'
 

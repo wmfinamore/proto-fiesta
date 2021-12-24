@@ -33,6 +33,7 @@ def interessadosapi(request):
 class InteressadosListView(LoginRequiredMixin,
                            PermissionRequiredMixin,
                            ListView,):
+    paginate_by = 5
     model = Interessado
     context_object_name = 'interessados'
     permission_required = ('interessados.view_interessado', ) # sintaxe das permissões no Django: <nome_app>.<action>_<model>

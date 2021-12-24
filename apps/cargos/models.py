@@ -9,6 +9,9 @@ class Cargo(models.Model):
     classe = models.CharField(max_length=10, null=True, blank=True)
     jornada = models.IntegerField(null=True, blank=True)
 
+    class Meta:
+        ordering = ['-id']
+
     def get_absolute_url(self):
         return reverse('cargos_lista')
 

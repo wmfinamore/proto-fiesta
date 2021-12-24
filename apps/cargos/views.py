@@ -55,6 +55,16 @@ class VinculosListView(ListView):
     model = Vinculo
     context_object_name = 'vinculos'
 
+    def get_queryset(self):
+        # Override sobre a função get_query para otimizar as pesquisas
+        # select_related funciona como inner join para trazer os dados
+        # das chaves estrangeiras em uma única consulta
+        vinculos = Vinculo.objects. \
+            select_related('funcionario'). \
+            select_related('cargo').\
+            select_related('lotacao').all()
+        return vinculos
+
 
 class VinculoCreateView(LoginRequiredMixin,
                         PermissionRequiredMixin,

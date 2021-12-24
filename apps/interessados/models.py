@@ -13,5 +13,8 @@ class Interessado(models.Model):
     cnpj = CNPJField('cnpj', max_length=14, blank=True, null=True, unique=True)
     data_nascimento = models.DateField(blank=True, null=True, validators=[validate_data_nascimento])
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return self.nome

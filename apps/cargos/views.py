@@ -50,6 +50,7 @@ class CargoDeleteView(LoginRequiredMixin,
 
 
 class VinculosListView(ListView):
+    paginate_by = 5
     model = Vinculo
     context_object_name = 'vinculos'
 

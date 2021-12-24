@@ -84,6 +84,7 @@ class ProcessoDeleteView(LoginRequiredMixin,
 
 
 class CaixaListView(LoginRequiredMixin, ListView):
+    paginate_by = 10
     model = Processo
     template_name = 'processos/caixa_postal.html'
     context_object_name = 'caixa'

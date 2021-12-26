@@ -1,6 +1,22 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
-{% load static %}
+
+{% block link %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block media %}
+    <style>
+        #id_lotacao {
+            position: relative;
+            width: 30%;
+        }
+         #id_funcionario {
+            position: relative;
+            width: 30%;
+        }
+    </style>
+{% endblock %}
 
 {% block main %}
     {% if vinculo %}
@@ -22,10 +38,43 @@
 
 {% endblock %}
 
-{% block static %}
-<!--    Try using the RelatedObjectLookups-->
-<script src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
-<script src="{% static 'admin/js/jquery.init.js' %}"></script>
-<script src="{% static 'admin/js/actions.js' %}"></script>
-<script src="{% static 'admin/js/core.js' %}"></script>
+{{% block static %}
+<!--  Observar a ordem em que o javascript é incluido no template  -->
+<!-- Revisar o jQuery renderizado para garantir que ele não está sendo carregado duas vezes na página -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#id_lotacao').select2({
+                ajax: {
+                    url: '/api/v1/orgaos/',
+                    headers:{'X-CSRFToken':'{{ csrf_token }}'},
+                    dataType: 'json',
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {id: item.id, text: item.nome};
+                            })
+                        };
+                    }
+                },
+                minimumInputLength: 3
+            });
+            $('#id_funcionario').select2({
+                ajax: {
+                    url: '/api/v1/usuarios/',
+                    headers:{'X-CSRFToken':'{{ csrf_token }}'},
+                    dataType: 'json',
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {id: item.id, text: item.get_full_name};
+                            })
+                        };
+                    }
+                },
+                minimumInputLength: 3
+            });
+        });
+    </script>
 {% endblock %}

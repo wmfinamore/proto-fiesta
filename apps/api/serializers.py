@@ -96,7 +96,7 @@ class InteressadoSerializer(serializers.ModelSerializer):
 class CargoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cargo
-        field = [
+        fields = [
             'id',
             'nome',
         ]

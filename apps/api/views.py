@@ -10,8 +10,10 @@ from .serializers import (ProcessoSerializer,
                           OrgaoSerializer,
                           UserSerializer,
                           TramiteSerializer,
-                          InteressadoSerializer,)
+                          InteressadoSerializer,
+                          CargoSerializer,)
 from apps.interessados.models import Interessado
+from apps.cargos.models import Cargo
 
 
 User = get_user_model()
@@ -119,3 +121,19 @@ class InteressadoAPIView(viewsets.ModelViewSet):
             interessados = Interessado.objects.filter(nome__icontains=term)
             return interessados
         return Interessado.objects.all()
+
+
+class CargoAPIView(viewsets.ModelViewSet):
+    """API para o app Cargos, model Cargo"""
+    queryset = Cargo.objects.all()
+    serializer_class = CargoSerializer
+    permission_classes = [permissions.IsAuthenticated, ]
+
+    def get_queryset(self):
+        # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
+        # formulário de processos ou outros que busquem cargos pelo nome
+        if self.request.is_ajax():
+            term = self.request.GET.get('term')
+            cargos = Cargo.objects.filter(nome__icontains=term)
+            return cargos
+        return Cargo.objects.all()

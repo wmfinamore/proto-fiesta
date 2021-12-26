@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from apps.orgaos.models import Orgao
 from apps.tramitacoes.models import Tramite
 from apps.interessados.models import Interessado
+from apps.cargos.models import Cargo
 
 
 class ParentAssuntoSerializer(serializers.ModelSerializer):
@@ -89,4 +90,13 @@ class InteressadoSerializer(serializers.ModelSerializer):
             'nome_social',
             'cpf',
             'cnpj',
+        ]
+
+
+class CargoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cargo
+        field = [
+            'id',
+            'nome',
         ]

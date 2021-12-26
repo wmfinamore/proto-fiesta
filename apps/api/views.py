@@ -67,6 +67,15 @@ class UserAPIView(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    def get_queryset(self):
+        # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
+        # formulário de processos ou outros que busquem interessados pelo nome
+        if self.request.is_ajax():
+            term = self.request.GET.get('term')
+            user = User.objects.filter(first_name__icontains=term)
+            return user
+        return User.objects.all()
+
 
 class TramiteAPIView(viewsets.ModelViewSet):
     """

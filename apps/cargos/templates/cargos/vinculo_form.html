@@ -15,6 +15,10 @@
             position: relative;
             width: 30%;
         }
+        #id_cargo {
+            position: relative;
+            width: 30%;
+        }
     </style>
 {% endblock %}
 
@@ -69,6 +73,21 @@
                         return {
                             results: $.map(data, function (item) {
                                 return {id: item.id, text: item.get_full_name};
+                            })
+                        };
+                    }
+                },
+                minimumInputLength: 3
+            });
+            $('#id_cargo').select2({
+                ajax: {
+                    url: '/api/v1/cargos/',
+                    headers:{'X-CSRFToken':'{{ csrf_token }}'},
+                    dataType: 'json',
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {id: item.id, text: item.nome};
                             })
                         };
                     }

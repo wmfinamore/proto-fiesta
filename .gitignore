@@ -3,6 +3,7 @@
 .idea
 *.pyc
 \media
+\mediafiles
 *.exe
 \installers
 \staticfiles

@@ -27,7 +27,8 @@ class Processo(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     num_processo = models.PositiveBigIntegerField(
         unique_for_year=date.today().strftime("%Y"), editable=False, default=0)
-    interessado = models.ForeignKey(Interessado, on_delete=models.PROTECT, null=True, blank=True, related_name='processos_interessado')
+    interessado = models.ForeignKey(Interessado, on_delete=models.PROTECT, null=True, blank=True,
+                                    related_name='processos_interessado')
     assunto = models.ForeignKey(Assunto, on_delete=models.PROTECT, related_name='processos_assunto')
     resumo = HTMLField(null=True, blank=True)
     anexo = models.FileField(null=True, blank=True, upload_to=interessado_processo_path)

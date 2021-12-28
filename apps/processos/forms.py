@@ -12,7 +12,7 @@ class ProcessoForm(forms.ModelForm):
 
     class Meta:
         model = Processo
-        fields = ['interessado', 'assunto', 'resumo', 'situacao']
+        fields = ['interessado', 'assunto', 'resumo', 'anexo', 'situacao', ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

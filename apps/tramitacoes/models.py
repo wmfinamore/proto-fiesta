@@ -13,11 +13,18 @@ from tinymce.models import HTMLField
 Usuario = get_user_model()
 
 
+def anexo_tramite_path(instance, filename):
+    return 't_{0}_{1}/{2}'.format(str(instance.processo.num_processo),
+                                  str(instance.data_criacao.strftime("%Y")),
+                                  filename)
+
+
 class Tramite(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     processo = models.ForeignKey(Processo, on_delete=models.PROTECT, related_name='processo_tramites')
     orgao_destino = models.ForeignKey(Orgao, on_delete=models.PROTECT, related_name='orgao_tramites')
     despacho = HTMLField(null=True, blank=True)
+    anexo = models.FileField(null=True, blank=True, upload_to=anexo_tramite_path)
     data_tramite = models.DateTimeField(auto_now_add=True)
     usuario_tramite = models.ForeignKey(Usuario, on_delete=models.PROTECT, related_name='usuario_tramites')
     data_recebimento = models.DateTimeField(null=True, blank=True)

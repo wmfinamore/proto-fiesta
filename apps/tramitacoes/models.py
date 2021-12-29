@@ -15,7 +15,7 @@ Usuario = get_user_model()
 
 def anexo_tramite_path(instance, filename):
     return 't_{0}_{1}/{2}'.format(str(instance.processo.num_processo),
-                                  str(instance.data_criacao.strftime("%Y")),
+                                  str(instance.processo.data_criacao.strftime("%Y")),
                                   filename)
 
 

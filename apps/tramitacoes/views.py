@@ -20,7 +20,7 @@ class TramitacaoCreateView(LoginRequiredMixin,
     permission_denied_message = "Você não tem permissão para tramitar processos"
     model = Tramite
     # declarar os campos que o usuário precisa preencher
-    fields = ['orgao_destino', 'despacho', ]
+    fields = ['orgao_destino', 'despacho', 'anexo', ]
 
     # Fazendo override do formulário para vincular o trâmite ao processo informado na url
     def post(self, request, *args, **kwargs):

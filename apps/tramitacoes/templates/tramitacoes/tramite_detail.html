@@ -1,4 +1,4 @@
-<!--{% extends '_base.html' %}-->
+{% extends '_base.html' %}
 {% load crispy_forms_tags %}
 
 {% block main %}
@@ -10,5 +10,6 @@
     {% autoescape off %}
         {{ tramite.despacho }}
     {% endautoescape %}
-
+    <br>
+    <p>Anexo: <a href="{{ tramite.anexo.url }}"> {{ tramite.anexo }} </a></p>
 {% endblock %}

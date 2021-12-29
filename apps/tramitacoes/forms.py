@@ -18,6 +18,7 @@ class TramiteForm(forms.ModelForm):
         fields = ['processo',
                   'orgao_destino',
                   'despacho',
+                  'anexo',
                   'usuario_tramite',
                   'data_recebimento',
                   ]
@@ -25,6 +26,7 @@ class TramiteForm(forms.ModelForm):
             'processo': 'Processo',
             'orgao_destino': 'Órgão Destino',
             'despacho': 'Despacho',
+            'anexo': 'Anexo',
             'usuario_tramite': 'Usuário Trâmite',
             'data_recebimento': 'Data Recepção',
         }

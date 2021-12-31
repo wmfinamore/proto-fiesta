@@ -1,5 +1,6 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block link %}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -50,9 +51,12 @@
                                 <button type="button" class="btn btn-danger">
                                     <a href="{% url 'tramitacao_excluir' tramites.id %}">Excluir</a>
                                 </button>
-                                <button type="button" class="btn btn-warning">
-                                    <a href="{% url 'tramitacao_receber' tramites.id %}">Receber</a>
+                                 <button onclick="receberProcesso('{{ processo.id }}')" class="btn btn-warning" type="submit">
+                                    Receber Processo
                                 </button>
+                            </div>
+                            <div class="row">
+                                <div class="col"><p id="mensagem"></p></div>
                             </div>
                         {% endif %}
                 </li>
@@ -72,6 +76,7 @@
 <!-- Revisar o jQuery renderizado para garantir que ele não está sendo carregado duas vezes na página -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{% static 'js/funcoes-ajax.js' %}"></script>
     <script>
         $(document).ready(function () {
             $('#id_interessado').select2({

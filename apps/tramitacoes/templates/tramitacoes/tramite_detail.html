@@ -5,11 +5,37 @@
 
     <h2>Trâmite</h2>
     <br>
-    <br>
 <!--    Tag do template para renderizar conteúdo HTML-->
-    {% autoescape off %}
-        {{ tramite.despacho }}
-    {% endautoescape %}
-    <br>
-    <p>Anexo: <a href="{{ tramite.anexo.url }}"> {{ tramite.anexo }} </a></p>
+    <div class="row g-3">
+        <div class="col-md-12">
+            <strong>Despacho:</strong>
+            {% autoescape off %}
+                {{ tramite.despacho }}
+            {% endautoescape %}
+        </div>
+    </div>
+    {% if tramite.anexo %}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <br>
+                <p><strong>Anexo:</strong> <a href="{{ tramite.anexo.url }}"> {{ tramite.anexo }} </a></p>
+            </div>
+        </div>
+    {% endif %}
+    <div class="row g-3">
+        <div class="col-md-4">
+            <p><strong>Data de Trâmite:</strong> {{ tramite.data_tramite|date:"d/m/Y" }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>Destino:</strong> {{ tramite.orgao_destino.nome }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>Data de Recebimento:</strong> {{ tramite.data_recebimento|date:"d/m/Y" }}</p>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-3">
+            <p><strong>Recebido por: </strong>{{ tramite.usuario_recepcao.get_full_name }}</p>
+        </div>
+    </div>
 {% endblock %}

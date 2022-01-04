@@ -16,7 +16,7 @@ from apps.processos.models import Processo
 class TramitacaoCreateView(LoginRequiredMixin,
                            PermissionRequiredMixin,
                            CreateView):
-    permission_required = ('tramitacoes.add_tramite')
+    permission_required = ('tramitacoes.add_tramite',)
     permission_denied_message = "Você não tem permissão para tramitar processos"
     model = Tramite
     # declarar os campos que o usuário precisa preencher
@@ -26,7 +26,7 @@ class TramitacaoCreateView(LoginRequiredMixin,
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         # Precisa passar o id do processo, sendo necessário declarar _id explicitamente
-        form.instance.processo_id = self.kwargs['pk'] # como usei class based view, precisa referenciar pk, e não id
+        form.instance.processo_id = self.kwargs['pk']  # como usei class based view, precisa referenciar pk, e não id
 
         if form.is_valid():
             return self.form_valid(form)
@@ -48,7 +48,7 @@ class TramitacaoCreateView(LoginRequiredMixin,
 class TramitacaoUpdateView(LoginRequiredMixin,
                            PermissionRequiredMixin,
                            UpdateView):
-    permission_required = ('tramitacoes.change_tramite')
+    permission_required = ('tramitacoes.change_tramite',)
     permission_denied_message = "Você não tem permissão para alterar tramitações"
     model = Tramite
     form_class = TramiteForm
@@ -68,7 +68,7 @@ class TramitacaoUpdateView(LoginRequiredMixin,
 class TramitacaoDeleteView(LoginRequiredMixin,
                            PermissionRequiredMixin,
                            DeleteView):
-    permission_required = ('tramitacoes.delete_tramite')
+    permission_required = ('tramitacoes.delete_tramite',)
     permission_denied_message = "Você não tem permissão para excluir tramitações"
     model = Tramite
     # success_url = reverse_lazy('processo_editar')
@@ -78,7 +78,7 @@ class TramitacaoDeleteView(LoginRequiredMixin,
     def get_success_url(self):
         return reverse_lazy('processo_editar', args=[self.object.processo.id])
 
-    #Override do método delete para validação de regra
+    # Override do método delete para validação de regra
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         success_url = self.get_success_url()
@@ -92,9 +92,9 @@ class TramitacaoDeleteView(LoginRequiredMixin,
 
 class ExportarTramitesCSV(View):
 
-    def get(self, request, **kwargs):
+    def get(self, **kwargs):
 
-        # definido o charset para renderização correta dos caractéres especiais latinos
+        # definido o charset para renderização correta dos caracteres especiais latinos
         response = HttpResponse(content_type='text/csv; charset="ISO-8859-1"')
         response['Content-Disposition'] = 'attachment; filename="tramitacoes.csv"'
 
@@ -136,7 +136,7 @@ class TramitesNaoRecebidos(LoginRequiredMixin,
 
 class ReceberProcesso(View):
 
-    def post(self, *args, **kwargs):
+    def post(self, **kwargs):
         processo = Processo.objects.get(id=kwargs['pk'])
         tramite = Tramite.objects.filter(processo=processo.id).first()
         if tramite.data_recebimento is None:

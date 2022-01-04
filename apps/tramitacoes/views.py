@@ -11,6 +11,7 @@ from datetime import datetime
 from apps.core.views import Render
 from apps.cargos.models import Vinculo
 from apps.processos.models import Processo
+from bs4 import BeautifulSoup
 
 
 class TramitacaoCreateView(LoginRequiredMixin,
@@ -92,7 +93,7 @@ class TramitacaoDeleteView(LoginRequiredMixin,
 
 class ExportarTramitesCSV(View):
 
-    def get(self, **kwargs):
+    def get(self, *args, **kwargs):
 
         # definido o charset para renderização correta dos caracteres especiais latinos
         response = HttpResponse(content_type='text/csv; charset="ISO-8859-1"')
@@ -102,10 +103,12 @@ class ExportarTramitesCSV(View):
         tramites = Tramite.objects.filter(processo=kwargs['pk'])
 
         writer = csv.writer(response)
-        writer.writerow(['Processo', 'Despacho', 'Órgão Destino', 'Data Tramite'])
+        writer.writerow(['Processo', 'Despacho HTML', 'Despacho', 'Órgão Destino', 'Data Tramite'])
         for tramite in tramites:
+            despacho = BeautifulSoup(tramite.despacho, features="html5lib")
             writer.writerow([tramite.numero_processo,
                              tramite.despacho,
+                             despacho.get_text(),
                              tramite.orgao_destino,
                              datetime.strftime(tramite.data_tramite, "%d/%m/%Y %H:%M:%S"),
                              ])

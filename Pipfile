@@ -25,6 +25,7 @@ django-tinymce = "*"
 xhtml2pdf = "*"
 crispy-bootstrap5 = "*"
 bs4 = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.9"

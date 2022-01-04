@@ -3,7 +3,6 @@
 import cnpj_field.models
 import cpf_field.models
 from django.db import migrations, models
-import django_cryptography.fields
 import uuid
 
 
@@ -21,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('nome', models.CharField(help_text='Nome ou Razão Social', max_length=100)),
                 ('nome_social', models.CharField(blank=True, max_length=100, null=True)),
-                ('cpf', django_cryptography.fields.encrypt(cpf_field.models.CPFField(blank=True, max_length=14, null=True, unique=True, verbose_name='cpf'))),
+                ('cpf', cpf_field.models.CPFField(blank=True, max_length=14, null=True, unique=True, verbose_name='cpf')),
                 ('cnpj', cnpj_field.models.CNPJField(blank=True, max_length=14, null=True, unique=True, verbose_name='cnpj')),
             ],
         ),

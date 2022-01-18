@@ -2,6 +2,15 @@
 {% load crispy_forms_tags %}
 {% crispy interessado_form interessado_form.helper %}
 
+{% block staticscss %}
+    <style>
+        #submit-id-submit {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+        }
+    </style>
+{% endblock %}
 
 {% block main %}
 
@@ -14,6 +23,5 @@
         {% csrf_token %}
         {% crispy form %}
     </form>
-
-
+    <br>
 {% endblock %}

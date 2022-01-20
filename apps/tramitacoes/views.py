@@ -139,7 +139,8 @@ class TramitesNaoRecebidos(LoginRequiredMixin,
 
 class ReceberProcesso(View):
 
-    def post(self, **kwargs):
+    # Mesmo não sendo usado no override, o método post precisa dos argumentos *args e **kwargs
+    def post(self, *args, **kwargs):
         processo = Processo.objects.get(id=kwargs['pk'])
         tramite = Tramite.objects.filter(processo=processo.id).first()
         if tramite.data_recebimento is None:

@@ -7,7 +7,7 @@ from .forms import TramiteForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
 from apps.core.views import Render
 from apps.cargos.models import Vinculo
 from apps.processos.models import Processo
@@ -106,11 +106,14 @@ class ExportarTramitesCSV(View):
         writer.writerow(['Processo', 'Despacho HTML', 'Despacho', 'Órgão Destino', 'Data Tramite'])
         for tramite in tramites:
             despacho = BeautifulSoup(tramite.despacho, features="html5lib")
+            fuso = 3
+            fuso_horas = timedelta(hours=fuso)
+            data_hora_tramite = tramite.data_tramite - fuso_horas
             writer.writerow([tramite.numero_processo,
                              tramite.despacho,
                              despacho.get_text(),
                              tramite.orgao_destino,
-                             datetime.strftime(tramite.data_tramite, "%d/%m/%Y %H:%M:%S"),
+                             datetime.strftime(data_hora_tramite, "%d/%m/%Y %H:%M:%S"),
                              ])
         return response
 

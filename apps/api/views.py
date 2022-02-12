@@ -38,7 +38,8 @@ class OrgaoAPIView(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
         # formulário de trâmites ou outros que busquem órgãos pelo nome
-        if self.request.is_ajax():
+        # if self.request.is_ajax():
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
             term = self.request.GET.get('term')
             orgaos = Orgao.objects.filter(nome__icontains=term)
             return orgaos
@@ -55,7 +56,8 @@ class AssuntoAPIView(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
         # formulário de processos ou outros que busquem interessados pelo nome
-        if self.request.is_ajax():
+        # if self.request.is_ajax():
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
             term = self.request.GET.get('term')
             assuntos = Assunto.objects.filter(nome__icontains=term)
             return assuntos
@@ -72,7 +74,8 @@ class UserAPIView(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
         # formulário de processos ou outros que busquem interessados pelo nome
-        if self.request.is_ajax():
+        # if self.request.is_ajax():
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
             term = self.request.GET.get('term')
             user = User.objects.filter(first_name__icontains=term)
             return user
@@ -116,7 +119,8 @@ class InteressadoAPIView(viewsets.ModelViewSet):
     def get_queryset(self):
         # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
         # formulário de processos ou outros que busquem interessados pelo nome
-        if self.request.is_ajax():
+        # if self.request.is_ajax():
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
             term = self.request.GET.get('term')
             interessados = Interessado.objects.filter(nome__icontains=term)
             return interessados
@@ -132,7 +136,8 @@ class CargoAPIView(viewsets.ModelViewSet):
     def get_queryset(self):
         # Sobrescrever o métodos get_queryset para filtrar a chamada ajax do
         # formulário de processos ou outros que busquem cargos pelo nome
-        if self.request.is_ajax():
+        # if self.request.is_ajax():
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
             term = self.request.GET.get('term')
             cargos = Cargo.objects.filter(nome__icontains=term)
             return cargos

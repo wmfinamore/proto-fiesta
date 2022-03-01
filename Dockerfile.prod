@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 # install psycopg2 and cryptography dependencies
 RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev libffi-dev openssl-dev cargo
+    && apk add postgresql-dev gcc python3-dev musl-dev libffi-dev openssl-dev cargo jpeg-dev zlib-dev
 
 # create directory for the proto-fiesta user
 RUN mkdir -p /home/proto_fiesta

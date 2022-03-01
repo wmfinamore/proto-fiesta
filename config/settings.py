@@ -223,3 +223,11 @@ EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
 
 # SEND LOG CONFIGURATION
 ADMIN = [('ADMIN_NAME', 'ADMIN_EMAIL'), ]
+
+# CACHE CONFIGURATIONS
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': env.str('REDIS_LOCATION'),
+    }
+}

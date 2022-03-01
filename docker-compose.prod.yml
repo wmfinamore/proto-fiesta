@@ -15,6 +15,14 @@ services:
       - .env
     depends_on:
       - db
+      - redis
+
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    expose:
+      - 6379
+    command: redis-server
 
   db:
     image: postgres:13.0-alpine
@@ -29,7 +37,7 @@ services:
       - static_volume:/home/proto_fiesta/web/staticfiles
       - media_volume:/home/proto_fiesta/web/mediafiles
     ports:
-      - 1337:80
+      - '1337:80'
     depends_on:
       - web
 

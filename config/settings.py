@@ -66,7 +66,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',  # per-site CACHE
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',  # per-site CACHE
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -158,7 +160,6 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # DEBUG TOOLBAR CONFIGURATION
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -172,7 +173,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
 # MPTT CONFIGURATIONS
-MPTT_ADMIN_LEVEL_INDENT = 20 # indent pixels per level globally
+MPTT_ADMIN_LEVEL_INDENT = 20  # indent pixels per level globally
 
 # DJANGO REST FRAMEWORK CONFIGURATIONS
 REST_FRAMEWORK = {
@@ -231,3 +232,6 @@ CACHES = {
         'LOCATION': env.str('REDIS_LOCATION'),
     }
 }
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 120
+CACHE_MIDDLEWARE_KEY_PREFIX = ''

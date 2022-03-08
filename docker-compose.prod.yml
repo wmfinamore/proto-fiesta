@@ -19,7 +19,7 @@ services:
 
   redis:
     image: redis:6.2-alpine
-    restart: always
+    #restart: always
     expose:
       - 6379
     command: redis-server

@@ -21,7 +21,8 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", config("SECRET_KEY"))
 DEBUG = True
 
 ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", config("DJANGO_ALLOWED_HOSTS")).split(" ")
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+if not DEBUG:
+    CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
 
 
 # Application definition

@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from datetime import date
 from .models import Processo
 from apps.assuntos.models import Assunto
 from django.contrib.auth import get_user_model
@@ -45,7 +46,8 @@ class ProcessoTests(TestCase):
 
     # Teste de resposta da rota para lista de processos
     def test_processo_list_view(self):
-        response = self.client.get(reverse('processos_lista'))
+        self.client.force_login(self.usuario_criacao)
+        response = self.client.get(reverse('processos_lista'), follow = True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '/2021')
+        self.assertContains(response, '/{0}'.format(date.today().strftime('%Y')))
         self.assertTemplateUsed(response, 'processos/processo_list.html')
